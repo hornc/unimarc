@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:mx="info:lc/xmlns/marcxchange-v1" version="1.0"
+  xmlns="http://www.loc.gov/MARC21/slim"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="mx">
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
