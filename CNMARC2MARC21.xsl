@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:marc="http://www.loc.gov/MARC21/slim" version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="marc">
+<xsl:stylesheet xmlns:mx="info:lc/xmlns/marcxchange-v1" version="1.0"
+  xmlns="http://www.loc.gov/MARC21/slim"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="mx">
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <!--
@@ -10,9 +11,9 @@
   -->
   <xsl:template match="/">
     <xsl:choose>
-      <xsl:when test="marc:collection">
+      <xsl:when test="mx:collection">
         <collection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <xsl:for-each select="marc:collection/marc:record">
+          <xsl:for-each select="mx:collection/mx:record">
             <record>
               <xsl:call-template name="record"/>
             </record>
@@ -21,7 +22,7 @@
       </xsl:when>
       <xsl:otherwise>
         <record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <xsl:for-each select="marc:record">
+          <xsl:for-each select="mx:record">
             <xsl:call-template name="record"/>
           </xsl:for-each>
         </record>
@@ -371,7 +372,7 @@
     </xsl:call-template>
 
     <!--
-    <xsl:for-each select="substring(marc:datafield[@tag],1,1)='9'">
+    <xsl:for-each select="substring(mx:datafield[@tag],1,1)='9'">
         <xsl:call-template name="selects">
           <xsl:with-param name="i">900</xsl:with-param> 
           <xsl:with-param name="count">1000</xsl:with-param>
@@ -416,28 +417,28 @@
 
 
   <xsl:template name="transform-leader">
-    <xsl:variable name="leader" select="marc:leader"/>
+    <xsl:variable name="leader" select="mx:leader"/>
     <xsl:variable name="leader05" select="translate(substring($leader,06,1), 'o', 'c')"/>
     <xsl:variable name="leader06" select="translate(substring($leader,07,1), 'hmn', 'aor')"/>
     <xsl:variable name="leader07" select="substring($leader,08,1)"/>
-    <xsl:variable name="leader08-16" select="'  22     '"/>
+    <xsl:variable name="leader08-16" select="' a2200000'"/>
     <xsl:variable name="leader17" select="translate(substring($leader,18,1), '23', '87')"/>
     <xsl:variable name="leader18" select="translate(substring($leader,19,1), ' n', 'i ')"/>
     <xsl:variable name="leader19-23" select="' 4500'"/>
     <leader>
-      <xsl:value-of select="concat('     ', $leader05, $leader06, $leader07, $leader08-16, $leader17, $leader18, $leader19-23)"/>
+      <xsl:value-of select="concat('00000', $leader05, $leader06, $leader07, $leader08-16, $leader17, $leader18, $leader19-23)"/>
     </leader>
   </xsl:template>
   <xsl:template name="copy-control">
     <xsl:param name="tag"/>
-    <xsl:for-each select="marc:controlfield[@tag=$tag]">
+    <xsl:for-each select="mx:controlfield[@tag=$tag]">
       <controlfield tag="{$tag}">
         <xsl:value-of select="text()"/>
       </controlfield>
     </xsl:for-each>
   </xsl:template>
   <xsl:template name="transform-100">
-    <xsl:variable name="source" select="marc:datafield[@tag='100']/marc:subfield[@code='a']"/>
+    <xsl:variable name="source" select="mx:datafield[@tag='100']/mx:subfield[@code='a']"/>
     <xsl:variable name="dest00-05" select="substring($source,03,6)"/>
     <xsl:variable name="dest06" select="translate(substring($source,09,1), 'abcdefghij', 'cdusrqmtpe')"/>
     <xsl:variable name="dest07-14" select="substring($source,10,8)"/>
@@ -461,8 +462,8 @@
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:param name="normalizeCodes" select="''" />
 
-    <xsl:if test="marc:datafield[@tag=$srcTag]/marc:subfield[contains($srcCodes, @code)]">
-      <xsl:for-each select="marc:datafield[@tag=$srcTag]">
+    <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
+      <xsl:for-each select="mx:datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
           <xsl:call-template name="copy-indicators">
             <xsl:with-param name="ind1" select="'x'" />
@@ -482,14 +483,14 @@
 <xsl:template name="transform-personal-name">
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag"/>
-    <xsl:param name="combinecodes"  />
-    <xsl:param name="combinecodes_fin"  />
-    <xsl:param name="dstCodes1" />
-    <xsl:param name="dstCodes1_fin"  />
+    <xsl:param name="combinecodes"/>
+    <xsl:param name="combinecodes_fin"/>
+    <xsl:param name="dstCodes1"/>
+    <xsl:param name="dstCodes1_fin"/>
     
 
-    <xsl:for-each select="marc:datafield[@tag=$srcTag]">
-      <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
+    <xsl:for-each select="mx:datafield[@tag=$srcTag]">
+      <datafield tag="{$dstTag}" ind1="{@ind2}" ind2=" ">
         
 
         <xsl:call-template name="transform-subfields-personal-combine">
@@ -518,7 +519,7 @@
     <xsl:param name="dstCodes1_fin"  />
     
 
-    <xsl:for-each select="marc:datafield[@tag=$srcTag]">
+    <xsl:for-each select="mx:datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
         
 
@@ -545,22 +546,22 @@
 
     <xsl:if test="$ind1='x'">
       <xsl:attribute name="ind1">
-        <xsl:value-of select="translate(@ind1, '#', '')"/>
+        <xsl:value-of select="translate(@ind1, '#', ' ')"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$ind2='x'">
       <xsl:attribute name="ind2">
-        <xsl:value-of select="translate(@ind2, '#', '')"/>
+        <xsl:value-of select="translate(@ind2, '#', ' ')"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$ind1!='x'">
       <xsl:attribute name="ind1">
-        <xsl:value-of select="translate(@ind1, '#', '')"/>
+        <xsl:value-of select="translate(@ind1, '#', ' ')"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:if test="$ind2!='x'">
       <xsl:attribute name="ind2">
-        <xsl:value-of select="translate(@ind2, '#', '')"/>
+        <xsl:value-of select="translate(@ind2, '#', ' ')"/>
       </xsl:attribute>
     </xsl:if>
   </xsl:template>
@@ -572,11 +573,11 @@
     <xsl:param name="normalizeCodes" select="''"/>
 
     <subfield>
-      <xsl:attribute name="code"><xsl:value-of select="$data_code" /></xsl:attribute>
-      <xsl:for-each select="marc:subfield[contains($srcCodes, @code)]">
+      <xsl:attribute name="code"><xsl:value-of select="$data_code"/></xsl:attribute>
+      <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
         <xsl:choose>
           <xsl:when test="$normalizeCodes!=''">
-            <xsl:value-of select="translate(text(), $normalizeCodes,'')" />
+            <xsl:value-of select="translate(text(), $normalizeCodes,'')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="text()"/>
@@ -594,11 +595,11 @@
     <xsl:param name="normalizeCodes" select="''"/>
 
     <subfield>
-      <xsl:attribute name="code"><xsl:value-of select="$data_code" /></xsl:attribute>
-      <xsl:for-each select="marc:subfield[contains($srcCodes, @code)]">
+      <xsl:attribute name="code"><xsl:value-of select="$data_code"/></xsl:attribute>
+      <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
         <xsl:choose>
           <xsl:when test="$normalizeCodes!=''">
-            <xsl:value-of select="translate(text(), $normalizeCodes,'')" />
+            <xsl:value-of select="translate(text(), $normalizeCodes,'')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="text()"/>
@@ -614,11 +615,11 @@
     <xsl:param name="dstCodes"/>
     <xsl:param name="normalizeCodes" select="''"/>
     
-    <xsl:for-each select="marc:subfield[contains($srcCodes, @code)]">          
+    <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
         <xsl:choose>
           <xsl:when test="$normalizeCodes!=''">
-            <xsl:value-of select="translate(text(), $normalizeCodes,'')" />
+            <xsl:value-of select="translate(text(), $normalizeCodes,'')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="text()"/>
