@@ -57,6 +57,23 @@
     </xsl:call-template>
     <xsl:call-template name="transform-100"/>
 
+    <!--010->020 ISBN-->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">010</xsl:with-param>
+      <xsl:with-param name="dstTag">020</xsl:with-param>
+      <xsl:with-param name="srcCodes">abdz</xsl:with-param>
+      <xsl:with-param name="dstCodes">aqcz</xsl:with-param>
+      <xsl:with-param name="normalizeCodes">-</xsl:with-param>
+    </xsl:call-template>
+
+    <!--011->022 ISSN-->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">011</xsl:with-param>
+      <xsl:with-param name="dstTag">022</xsl:with-param>
+      <xsl:with-param name="srcCodes">ayz</xsl:with-param>
+      <xsl:with-param name="dstCodes">azy</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 200->245 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">200</xsl:with-param>
@@ -207,6 +224,8 @@
     <xsl:param name="dstTag" select="@srcTag"/>
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
+    <xsl:param name="normalizeCodes" select="''"/>
+
     <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="mx:datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
@@ -214,6 +233,7 @@
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
             <xsl:with-param name="dstCodes" select="$dstCodes"/>
+            <xsl:with-param name="normalizeCodes" select="$normalizeCodes"/>
           </xsl:call-template>
         </datafield>
       </xsl:for-each>
@@ -243,9 +263,17 @@
   <xsl:template name="transform-subfields">
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
+    <xsl:param name="normalizeCodes" select="''"/>
     <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
-        <xsl:value-of select="text()"/>
+        <xsl:choose>
+          <xsl:when test="$normalizeCodes!=''">
+            <xsl:value-of select="translate(text(), $normalizeCodes,'')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="text()"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </subfield>
     </xsl:for-each>
   </xsl:template>
