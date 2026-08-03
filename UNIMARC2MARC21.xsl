@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:marc="http://www.loc.gov/MARC21/slim" version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="marc">
+<xsl:stylesheet xmlns:mx="info:lc/xmlns/marcxchange-v1" version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="mx">
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <!--
-  Transformation from UNIMARC XML representation to MARCXML.
-  Based upon http://www.loc.gov/marc/unimarctomarc21.html
-  
+    Transformation from UNIMARC XML representation (MarcXchange ISO 25577) to MARCXML.
+    Based upon https://www.loc.gov/marc/unimarctomarc21.html
+  -->
+  <!--
+    NOTE FOR LEGACY UNIMARC USERS:
+    If your source XML incorrectly wraps UNIMARC tags in the Library of Congress MARC21 namespace
+    (http://www.loc.gov/MARC21/slim) instead of valid ISO 25577 MarcXchange, change the 'xmlns:mx'
+    declaration above to:
+    xmlns:mx="http://www.loc.gov/MARC21/slim"
   -->
   <xsl:template match="/">
     <xsl:choose>
-      <xsl:when test="marc:collection">
+      <xsl:when test="mx:collection">
         <collection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <xsl:for-each select="marc:collection/marc:record">
+          <xsl:for-each select="mx:collection/mx:record">
             <record>
               <xsl:call-template name="record"/>
             </record>
@@ -21,7 +27,7 @@
       </xsl:when>
       <xsl:otherwise>
         <record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
-          <xsl:for-each select="marc:record">
+          <xsl:for-each select="mx:record">
             <xsl:call-template name="record"/>
           </xsl:for-each>
         </record>
@@ -114,7 +120,7 @@
     </xsl:call-template>
     
     <!--
-    <xsl:for-each select="substring(marc:datafield[@tag],1,1)='9'">
+    <xsl:for-each select="substring(mx:datafield[@tag],1,1)='9'">
         <xsl:call-template name="selects">
           <xsl:with-param name="i">900</xsl:with-param> 
           <xsl:with-param name="count">1000</xsl:with-param>
@@ -151,7 +157,7 @@
 
   
   <xsl:template name="transform-leader">
-    <xsl:variable name="leader" select="marc:leader"/>
+    <xsl:variable name="leader" select="mx:leader"/>
     <xsl:variable name="leader05" select="translate(substring($leader,06,1), 'o', 'c')"/>
     <xsl:variable name="leader06" select="translate(substring($leader,07,1), 'hmn', 'aor')"/>
     <xsl:variable name="leader07" select="substring($leader,08,1)"/>
@@ -165,14 +171,14 @@
   </xsl:template>
   <xsl:template name="copy-control">
     <xsl:param name="tag"/>
-    <xsl:for-each select="marc:controlfield[@tag=$tag]">
+    <xsl:for-each select="mx:controlfield[@tag=$tag]">
       <controlfield tag="{$tag}">
         <xsl:value-of select="text()"/>
       </controlfield>
     </xsl:for-each>
   </xsl:template>
   <xsl:template name="transform-100">
-    <xsl:variable name="source" select="marc:datafield[@tag='100']/marc:subfield[@code='a']"/>
+    <xsl:variable name="source" select="mx:datafield[@tag='100']/mx:subfield[@code='a']"/>
     <xsl:variable name="dest00-05" select="substring($source,03,6)"/>
     <xsl:variable name="dest06" select="translate(substring($source,09,1), 'abcdefghij', 'cdusrqmtpe')"/>
     <xsl:variable name="dest07-14" select="substring($source,10,8)"/>
@@ -194,8 +200,8 @@
     <xsl:param name="dstTag" select="@srcTag"/>
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
-    <xsl:if test="marc:datafield[@tag=$srcTag]/marc:subfield[contains($srcCodes, @code)]">
-      <xsl:for-each select="marc:datafield[@tag=$srcTag]">
+    <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
+      <xsl:for-each select="mx:datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
           <xsl:call-template name="copy-indicators"/>
           <xsl:call-template name="transform-subfields">
@@ -210,7 +216,7 @@
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag"/>
 
-    <xsl:for-each select="marc:datafield[@tag=$srcTag]">
+    <xsl:for-each select="mx:datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
         <xsl:call-template name="transform-subfields">
           <xsl:with-param name="srcCodes" select="'acdfgp4'"/>
@@ -230,7 +236,7 @@
   <xsl:template name="transform-subfields">
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
-    <xsl:for-each select="marc:subfield[contains($srcCodes, @code)]">
+    <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
         <xsl:value-of select="text()"/>
       </subfield>
