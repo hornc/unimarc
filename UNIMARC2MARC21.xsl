@@ -17,7 +17,7 @@
   <xsl:template match="/">
     <xsl:choose>
       <xsl:when test="mx:collection">
-        <collection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+        <collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
           <xsl:for-each select="mx:collection/mx:record">
             <record>
               <xsl:call-template name="record"/>
@@ -26,7 +26,7 @@
         </collection>
       </xsl:when>
       <xsl:otherwise>
-        <record xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+        <record xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
           <xsl:for-each select="mx:record">
             <xsl:call-template name="record"/>
           </xsl:for-each>
