@@ -224,7 +224,7 @@
     <xsl:param name="dstTag"/>
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
-      <datafield tag="{$dstTag}" ind1="{@ind2}" ind2="">
+      <datafield tag="{$dstTag}" ind1="{@ind2}" ind2=" ">
         <xsl:call-template name="transform-subfields">
           <xsl:with-param name="srcCodes" select="'acdfgp4'"/>
           <xsl:with-param name="dstCodes" select="'acbdqu4'"/>
@@ -234,10 +234,10 @@
   </xsl:template>
   <xsl:template name="copy-indicators">
     <xsl:attribute name="ind1">
-      <xsl:value-of select="translate(@ind1, '#', '')"/>
+      <xsl:value-of select="translate(@ind1, '#', ' ')"/>
     </xsl:attribute>
     <xsl:attribute name="ind2">
-      <xsl:value-of select="translate(@ind2, '#', '')"/>
+      <xsl:value-of select="translate(@ind2, '#', ' ')"/>
     </xsl:attribute>
   </xsl:template>
   <xsl:template name="transform-subfields">
