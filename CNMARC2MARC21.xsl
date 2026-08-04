@@ -419,10 +419,7 @@
     <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="mx:datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
-          <xsl:call-template name="copy-indicators">
-            <xsl:with-param name="ind1" select="'x'" />
-            <xsl:with-param name="ind2" select="'x'" />
-          </xsl:call-template>
+          <xsl:call-template name="copy-indicators"/>
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
             <xsl:with-param name="dstCodes" select="$dstCodes"/>
@@ -444,7 +441,7 @@
     
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
-      <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '  ')}" ind2=" ">
+      <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '11')}" ind2=" ">
         
         <xsl:call-template name="transform-subfields-personal-combine">
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
@@ -473,7 +470,7 @@
     
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
-      <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '  ')}" ind2="">
+      <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '11')}" ind2=" ">
 
         <xsl:call-template name="transform-subfields-combine">
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
@@ -493,29 +490,12 @@
   </xsl:template>
 
   <xsl:template name="copy-indicators">
-    <xsl:param name="ind1" />
-    <xsl:param name="ind2" />
-
-    <xsl:if test="$ind1='x'">
       <xsl:attribute name="ind1">
-        <xsl:value-of select="translate(@ind1, '#|', ' ')"/>
+        <xsl:value-of select="translate(@ind1, '#|', '  ')"/>
       </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$ind2='x'">
       <xsl:attribute name="ind2">
-        <xsl:value-of select="translate(@ind2, '#|', ' ')"/>
+        <xsl:value-of select="translate(@ind2, '#|', '  ')"/>
       </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$ind1!='x'">
-      <xsl:attribute name="ind1">
-        <xsl:value-of select="translate(@ind1, '#|', ' ')"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$ind2!='x'">
-      <xsl:attribute name="ind2">
-        <xsl:value-of select="translate(@ind2, '#|', ' ')"/>
-      </xsl:attribute>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template name="transform-subfields-combine">
