@@ -7,8 +7,12 @@
   <!--
   Transformation from UNIMARC XML representation to MARCXML.
   Based upon http://www.loc.gov/marc/unimarctomarc21.html
-  
   -->
+
+  <xsl:variable name="all-codes" select="'abcdefghijklmnopqrstuvwxyz123456789'"/>
+  <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+  <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+
   <xsl:template match="/">
     <xsl:choose>
       <xsl:when test="mx:collection">
@@ -33,8 +37,6 @@
   <xsl:template name="record">
     <xsl:if test="@type">
       <xsl:attribute name="type">
-        <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
-        <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
         <xsl:variable name="val" select="normalize-space(@type)"/>
         <xsl:value-of select="concat(
           translate(substring($val, 1, 1), $lower, $upper),
@@ -76,7 +78,6 @@
       <xsl:with-param name="dstCodes">2az</xsl:with-param>
     </xsl:call-template>
 
-
     <!-- 101->041 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">101</xsl:with-param>
@@ -85,7 +86,7 @@
       <xsl:with-param name="dstCodes">akhbf</xsl:with-param>
     </xsl:call-template>
 
-     <!-- 102->044 -->
+    <!-- 102->044 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">102</xsl:with-param>
       <xsl:with-param name="dstTag">044</xsl:with-param>
@@ -145,14 +146,12 @@
       <xsl:with-param name="ind2">7</xsl:with-param>
     </xsl:call-template>
 
-
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">516</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
       <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">3</xsl:with-param>
     </xsl:call-template>
-
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">517</xsl:with-param>
@@ -200,7 +199,6 @@
       <xsl:with-param name="srcCodes">ahikm</xsl:with-param>
       <xsl:with-param name="dstCodes">anpfl</xsl:with-param>
     </xsl:call-template>
-
 
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
@@ -560,5 +558,4 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:variable name="all-codes">ABabcdefghijklmnopqrstuvwxyz123456789</xsl:variable>
 </xsl:stylesheet>
