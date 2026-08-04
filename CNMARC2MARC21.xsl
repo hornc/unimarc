@@ -265,16 +265,6 @@
       <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
     </xsl:call-template>
 
-
-    <!-- 700->100 -->
-    <xsl:call-template name="transform-personal-name">
-      <xsl:with-param name="srcTag">700</xsl:with-param>
-      <xsl:with-param name="dstTag">700</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-    </xsl:call-template>
-
-
     <!-- 701->700 -->
     <xsl:call-template name="transform-personal-name">
       <xsl:with-param name="srcTag">701</xsl:with-param>
@@ -283,14 +273,6 @@
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
       <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
       <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
-    </xsl:call-template>
-
-    <!-- 701->700 -->
-    <xsl:call-template name="transform-personal-name">
-      <xsl:with-param name="srcTag">701</xsl:with-param>
-      <xsl:with-param name="dstTag">700</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">ab</xsl:with-param>
     </xsl:call-template>
 
     <!-- 702->700 -->
@@ -303,14 +285,6 @@
       <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 701->700 -->
-    <xsl:call-template name="transform-personal-name">
-      <xsl:with-param name="srcTag">702</xsl:with-param>
-      <xsl:with-param name="dstTag">700</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">ab</xsl:with-param>
-    </xsl:call-template>
-
     <!-- 711->711 -->
     <xsl:call-template name="transform-name">
       <xsl:with-param name="srcTag">711</xsl:with-param>
@@ -320,15 +294,6 @@
       <xsl:with-param name="dstCodes1">defh</xsl:with-param>
       <xsl:with-param name="dstCodes1_fin">ncde</xsl:with-param>
     </xsl:call-template>
-
-<!-- 711->711 -->
-    <xsl:call-template name="transform-name">
-      <xsl:with-param name="srcTag">711</xsl:with-param>
-      <xsl:with-param name="dstTag">711</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">ab</xsl:with-param>
-    </xsl:call-template>
-
 
     <!-- 712->710 -->
     <xsl:call-template name="transform-name">
@@ -340,27 +305,19 @@
       <xsl:with-param name="dstCodes1_fin">ncde</xsl:with-param>
     </xsl:call-template>
 
-<!-- 712->710 -->
-    <xsl:call-template name="transform-name">
-      <xsl:with-param name="srcTag">712</xsl:with-param>
-      <xsl:with-param name="dstTag">710</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
+    <!-- 801->040 -->
+    <xsl:call-template name="selects">
+      <xsl:with-param name="i">801</xsl:with-param>
+      <xsl:with-param name="count">040</xsl:with-param>
+      <xsl:with-param name="srcCodes">abcg</xsl:with-param>
+      <xsl:with-param name="dstCodes">acde</xsl:with-param>
     </xsl:call-template>
 
-	<!-- 801 -> 040 -->
-	<xsl:call-template name="selects">
-		<xsl:with-param name="i">801</xsl:with-param>
-		<xsl:with-param name="count">040</xsl:with-param>
-        <xsl:with-param name="srcCodes">abcg</xsl:with-param>
-      <xsl:with-param name="dstCodes">acde</xsl:with-param>
-	</xsl:call-template>
-
-	<!-- 856 -> 856 -->
-	<xsl:call-template name="selects">
-		<xsl:with-param name="i">856</xsl:with-param>
-		<xsl:with-param name="count">856</xsl:with-param>
-	</xsl:call-template>
+    <!-- 856->856 -->
+    <xsl:call-template name="selects">
+      <xsl:with-param name="i">856</xsl:with-param>
+      <xsl:with-param name="count">856</xsl:with-param>
+    </xsl:call-template>
 
     <!--Capture local data -->
     <xsl:call-template name="selects">
