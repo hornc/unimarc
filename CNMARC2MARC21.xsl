@@ -33,7 +33,13 @@
   <xsl:template name="record">
     <xsl:if test="@type">
       <xsl:attribute name="type">
-        <xsl:value-of select="@type"/>
+        <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+        <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+        <xsl:variable name="val" select="normalize-space(@type)"/>
+        <xsl:value-of select="concat(
+          translate(substring($val, 1, 1), $lower, $upper),
+          translate(substring($val, 2), $upper, $lower)
+        )"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="transform-leader"/>
