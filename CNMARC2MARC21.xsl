@@ -446,8 +446,8 @@
         <xsl:call-template name="transform-subfields-personal-combine">
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
           <xsl:with-param name="dstCodes" select="$combinecodes_fin"/>
+          <xsl:with-param name="normalizeCodes">,</xsl:with-param>
         </xsl:call-template>
-
 
         <xsl:if test="$dstCodes1!=''">          
           <xsl:call-template name="transform-subfields">
@@ -476,7 +476,6 @@
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
           <xsl:with-param name="dstCodes" select="$combinecodes_fin"/>
         </xsl:call-template>
-
 
         <xsl:if test="$dstCodes1!=''">          
           <xsl:call-template name="transform-subfields">
