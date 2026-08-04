@@ -109,15 +109,6 @@
       <xsl:with-param name="dstCodes">abch</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 200$a->246 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">200</xsl:with-param>
-      <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="srcCodes">a</xsl:with-param>
-      <xsl:with-param name="dstCodes">a</xsl:with-param>
-    </xsl:call-template>
-
-    
     <!-- 510 ,512, 513, 514, 515, 516, 517-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">510</xsl:with-param>
