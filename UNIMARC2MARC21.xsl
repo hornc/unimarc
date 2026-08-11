@@ -341,22 +341,22 @@
   </xsl:template>
 
   <xsl:template name="selects">
-    <xsl:param name="i" />
-    <xsl:param name="count" />
+    <xsl:param name="i"/>
+    <xsl:param name="count"/>
 
     <xsl:if test="$i &lt;= $count">
       <xsl:call-template name="transform-datafield">
         <xsl:with-param name="srcTag">
-          <xsl:value-of select="$i" />
+          <xsl:value-of select="$i"/>
         </xsl:with-param>
         <xsl:with-param name="dstTag">
-          <xsl:value-of select="$i" />
+          <xsl:value-of select="$i"/>
         </xsl:with-param>
         <xsl:with-param name="srcCodes">
           <xsl:value-of select="$all-codes"/>
         </xsl:with-param>
         <xsl:with-param name="dstCodes">
-          <xsl:value-of select="$all-codes" />
+          <xsl:value-of select="$all-codes"/>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
@@ -419,7 +419,7 @@
     <xsl:param name="dstTag" select="@srcTag"/>
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
-    <xsl:param name="normalizeCodes" select="''" />
+    <xsl:param name="normalizeCodes" select="''"/>
 
     <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="mx:datafield[@tag=$srcTag]">
@@ -428,7 +428,7 @@
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
             <xsl:with-param name="dstCodes" select="$dstCodes"/>
-            <xsl:with-param name="normalizeCodes" select="$normalizeCodes" />
+            <xsl:with-param name="normalizeCodes" select="$normalizeCodes"/>
           </xsl:call-template>
         </datafield>
       </xsl:for-each>
@@ -468,10 +468,10 @@
   <xsl:template name="transform-name">
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag"/>
-    <xsl:param name="combinecodes"  />
-    <xsl:param name="combinecodes_fin"  />
-    <xsl:param name="dstCodes1" />
-    <xsl:param name="dstCodes1_fin"  />
+    <xsl:param name="combinecodes"/>
+    <xsl:param name="combinecodes_fin"/>
+    <xsl:param name="dstCodes1"/>
+    <xsl:param name="dstCodes1_fin"/>
     
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
@@ -503,9 +503,9 @@
   </xsl:template>
 
   <xsl:template name="transform-subfields-combine">
-    <xsl:param name="data_code" select ="'a'" />
-    <xsl:param name="srcCodes" />
-    <xsl:param name="dstCodes" />
+    <xsl:param name="data_code" select ="'a'"/>
+    <xsl:param name="srcCodes"/>
+    <xsl:param name="dstCodes"/>
     <xsl:param name="normalizeCodes" select="''"/>
 
     <subfield>
@@ -525,9 +525,9 @@
   </xsl:template>
 
   <xsl:template name="transform-subfields-personal-combine">
-    <xsl:param name="data_code" select ="'a'" />
-    <xsl:param name="srcCodes" />
-    <xsl:param name="dstCodes" />
+    <xsl:param name="data_code" select ="'a'"/>
+    <xsl:param name="srcCodes"/>
+    <xsl:param name="dstCodes"/>
     <xsl:param name="normalizeCodes" select="''"/>
 
     <subfield>
