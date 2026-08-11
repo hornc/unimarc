@@ -5,8 +5,8 @@
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <!--
-  Transformation from UNIMARC XML representation to MARCXML.
-  Based upon http://www.loc.gov/marc/unimarctomarc21.html
+    Transformation from UNIMARC XML representation (MarcXchange ISO 25577) to MARCXML.
+    Based upon https://www.loc.gov/marc/unimarctomarc21.html
   -->
   <!--
     NOTE FOR LEGACY UNIMARC USERS:
