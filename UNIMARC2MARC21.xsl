@@ -60,7 +60,7 @@
     </xsl:call-template>
     <xsl:call-template name="transform-100"/>
 
-    <!--010->020-->
+    <!--010->020 ISBN-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">010</xsl:with-param>
       <xsl:with-param name="dstTag">020</xsl:with-param>
@@ -69,7 +69,7 @@
       <xsl:with-param name="normalizeCodes">-</xsl:with-param>
     </xsl:call-template>
 
-    <!--011->022-->
+    <!--011->022 ISSN-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">011</xsl:with-param>
       <xsl:with-param name="dstTag">022</xsl:with-param>
@@ -547,10 +547,10 @@
   </xsl:template>
 
   <xsl:template name="transform-subfields">
-    <xsl:param name="srcCodes"/>
-    <xsl:param name="dstCodes"/>
+    <xsl:param name="srcCodes" select="$all-codes"/>
+    <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:param name="normalizeCodes" select="''"/>
-    
+
     <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
         <xsl:choose>
