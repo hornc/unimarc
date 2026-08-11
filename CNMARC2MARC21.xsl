@@ -8,6 +8,13 @@
   Transformation from UNIMARC XML representation to MARCXML.
   Based upon http://www.loc.gov/marc/unimarctomarc21.html
   -->
+  <!--
+    NOTE FOR LEGACY UNIMARC USERS:
+    If your source XML incorrectly wraps UNIMARC tags in the Library of Congress MARC21 namespace
+    (http://www.loc.gov/MARC21/slim) instead of valid ISO 25577 MarcXchange, change the 'xmlns:mx'
+    declaration above to:
+    xmlns:mx="http://www.loc.gov/MARC21/slim"
+  -->
 
   <xsl:variable name="all-codes" select="'abcdefghijklmnopqrstuvwxyz123456789'"/>
   <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
