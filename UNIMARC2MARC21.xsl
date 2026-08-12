@@ -60,6 +60,14 @@
     </xsl:call-template>
     <xsl:call-template name="transform-100"/>
 
+    <!--020->015-->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">020</xsl:with-param>
+      <xsl:with-param name="dstTag">015</xsl:with-param>
+      <xsl:with-param name="srcCodes">abz</xsl:with-param>
+      <xsl:with-param name="dstCodes">2az</xsl:with-param>
+    </xsl:call-template>
+
     <!--010->020 ISBN-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">010</xsl:with-param>
@@ -77,12 +85,12 @@
       <xsl:with-param name="dstCodes">azy</xsl:with-param>
     </xsl:call-template>
 
-    <!--020->015-->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">020</xsl:with-param>
-      <xsl:with-param name="dstTag">015</xsl:with-param>
-      <xsl:with-param name="srcCodes">abz</xsl:with-param>
-      <xsl:with-param name="dstCodes">2az</xsl:with-param>
+    <!-- 801->040 -->
+    <xsl:call-template name="selects">
+      <xsl:with-param name="i">801</xsl:with-param>
+      <xsl:with-param name="count">040</xsl:with-param>
+      <xsl:with-param name="srcCodes">abcg</xsl:with-param>
+      <xsl:with-param name="dstCodes">acde</xsl:with-param>
     </xsl:call-template>
 
     <!-- 101->041 -->
@@ -109,6 +117,48 @@
       <xsl:with-param name="dstCodes">a</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 615->072 -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">615</xsl:with-param>
+      <xsl:with-param name="dstTag">072</xsl:with-param>
+      <xsl:with-param name="srcCodes">nm</xsl:with-param>
+      <xsl:with-param name="dstCodes">ax</xsl:with-param>
+    </xsl:call-template>
+
+    <!-- 675->080 -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">675</xsl:with-param>
+      <xsl:with-param name="dstTag">080</xsl:with-param>
+      <xsl:with-param name="srcCodes">av</xsl:with-param>
+      <xsl:with-param name="dstCodes">a2</xsl:with-param>
+    </xsl:call-template>
+
+    <!-- 676->082 -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">676</xsl:with-param>
+      <xsl:with-param name="dstTag">082</xsl:with-param>
+      <xsl:with-param name="srcCodes">av</xsl:with-param>
+      <xsl:with-param name="dstCodes">a2</xsl:with-param>
+    </xsl:call-template>
+
+    <!-- 700->100 -->
+    <xsl:call-template name="transform-personal-name">
+      <xsl:with-param name="srcTag">700</xsl:with-param>
+      <xsl:with-param name="dstTag">100</xsl:with-param>
+      <xsl:with-param name="combinecodes">ab</xsl:with-param>
+      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
+    </xsl:call-template>
+
+    <!-- 500->240 -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">500</xsl:with-param>
+      <xsl:with-param name="dstTag">240</xsl:with-param>
+      <xsl:with-param name="srcCodes">ahikm</xsl:with-param>
+      <xsl:with-param name="dstCodes">anpfl</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 200->245 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">200</xsl:with-param>
@@ -117,7 +167,7 @@
       <xsl:with-param name="dstCodes">abch</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 510 ,512, 513, 514, 515, 516, 517-->
+    <!-- 510, 512, 513, 514, 515, 516, 517->246-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">510</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
@@ -199,14 +249,6 @@
       <xsl:with-param name="dstCodes">avx</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 500->240 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">500</xsl:with-param>
-      <xsl:with-param name="dstTag">240</xsl:with-param>
-      <xsl:with-param name="srcCodes">ahikm</xsl:with-param>
-      <xsl:with-param name="dstCodes">anpfl</xsl:with-param>
-    </xsl:call-template>
-
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">600</xsl:with-param>
@@ -236,40 +278,6 @@
       <xsl:with-param name="srcCodes">ax</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 615->072 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">615</xsl:with-param>
-      <xsl:with-param name="dstTag">072</xsl:with-param>
-      <xsl:with-param name="srcCodes">nm</xsl:with-param>
-      <xsl:with-param name="dstCodes">ax</xsl:with-param>
-    </xsl:call-template>
-
-    <!-- 675->080 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">675</xsl:with-param>
-      <xsl:with-param name="dstTag">080</xsl:with-param>
-      <xsl:with-param name="srcCodes">av</xsl:with-param>
-      <xsl:with-param name="dstCodes">a2</xsl:with-param>
-    </xsl:call-template>
-
-    <!-- 676->082 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">676</xsl:with-param>
-      <xsl:with-param name="dstTag">082</xsl:with-param>
-      <xsl:with-param name="srcCodes">av</xsl:with-param>
-      <xsl:with-param name="dstCodes">a2</xsl:with-param>
-    </xsl:call-template>
-
-    <!-- 700->100 -->
-    <xsl:call-template name="transform-personal-name">
-      <xsl:with-param name="srcTag">700</xsl:with-param>
-      <xsl:with-param name="dstTag">100</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
-    </xsl:call-template>
-
     <!-- 701->700 -->
     <xsl:call-template name="transform-personal-name">
       <xsl:with-param name="srcTag">701</xsl:with-param>
@@ -290,16 +298,6 @@
       <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 711->711 -->
-    <xsl:call-template name="transform-name">
-      <xsl:with-param name="srcTag">711</xsl:with-param>
-      <xsl:with-param name="dstTag">711</xsl:with-param>
-      <xsl:with-param name="combinecodes">ab</xsl:with-param>
-      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">defh</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">ncde</xsl:with-param>
-    </xsl:call-template>
-
     <!-- 712->710 -->
     <xsl:call-template name="transform-name">
       <xsl:with-param name="srcTag">712</xsl:with-param>
@@ -310,12 +308,14 @@
       <xsl:with-param name="dstCodes1_fin">ncde</xsl:with-param>
     </xsl:call-template>
 
-    <!-- 801->040 -->
-    <xsl:call-template name="selects">
-      <xsl:with-param name="i">801</xsl:with-param>
-      <xsl:with-param name="count">040</xsl:with-param>
-      <xsl:with-param name="srcCodes">abcg</xsl:with-param>
-      <xsl:with-param name="dstCodes">acde</xsl:with-param>
+    <!-- 711->711 -->
+    <xsl:call-template name="transform-name">
+      <xsl:with-param name="srcTag">711</xsl:with-param>
+      <xsl:with-param name="dstTag">711</xsl:with-param>
+      <xsl:with-param name="combinecodes">ab</xsl:with-param>
+      <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
+      <xsl:with-param name="dstCodes1">defh</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">ncde</xsl:with-param>
     </xsl:call-template>
 
     <!-- 856->856 -->
