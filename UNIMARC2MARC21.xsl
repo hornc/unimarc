@@ -249,6 +249,17 @@
       <xsl:with-param name="dstCodes">avx</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 300-315 and 321 -> 500 General Note -->
+    <xsl:for-each select="mx:datafield[(@tag &gt;= 300 and @tag &lt;= 315) or @tag = 321]/@tag[not(. = preceding::mx:datafield/@tag)]">
+      <xsl:variable name="curTag" select="."/>
+      <xsl:for-each select="parent::mx:datafield/parent::mx:record">
+        <xsl:call-template name="transform-datafield">
+          <xsl:with-param name="srcTag" select="$curTag"/>
+          <xsl:with-param name="dstTag">500</xsl:with-param>
+        </xsl:call-template>
+      </xsl:for-each>
+    </xsl:for-each>
+
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">600</xsl:with-param>
