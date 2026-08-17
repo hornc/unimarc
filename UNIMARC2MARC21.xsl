@@ -55,6 +55,20 @@
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">001</xsl:with-param>
     </xsl:call-template>
+
+    <!-- 003 Control Number Identifier -->
+    <xsl:variable name="unimarc003" select="string(mx:controlfield[@tag='003'])"/>
+    <xsl:choose>
+      <!-- BnF (France) -->
+      <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
+        <controlfield tag="003">FrPBN</controlfield>
+      </xsl:when>
+      <!-- BNP (Portugal) -->
+      <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
+        <controlfield tag="003">PoLiBN</controlfield>
+      </xsl:when>
+    </xsl:choose>
+
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">005</xsl:with-param>
     </xsl:call-template>
@@ -66,6 +80,14 @@
       <xsl:with-param name="dstTag">015</xsl:with-param>
       <xsl:with-param name="srcCodes">abz</xsl:with-param>
       <xsl:with-param name="dstCodes">2az</xsl:with-param>
+    </xsl:call-template>
+
+    <!--021->017 Copyright or Legal Deposit Number-->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">021</xsl:with-param>
+      <xsl:with-param name="dstTag">017</xsl:with-param>
+      <xsl:with-param name="srcCodes">ab</xsl:with-param>
+      <xsl:with-param name="dstCodes">ba</xsl:with-param>
     </xsl:call-template>
 
     <!--010->020 ISBN-->
@@ -248,6 +270,17 @@
       <xsl:with-param name="srcCodes">avx</xsl:with-param>
       <xsl:with-param name="dstCodes">avx</xsl:with-param>
     </xsl:call-template>
+
+    <!-- 300-315 and 321 -> 500 General Note -->
+    <xsl:for-each select="mx:datafield[(@tag &gt;= 300 and @tag &lt;= 315) or @tag = 321]/@tag[not(. = preceding::mx:datafield/@tag)]">
+      <xsl:variable name="curTag" select="."/>
+      <xsl:for-each select="parent::mx:datafield/parent::mx:record">
+        <xsl:call-template name="transform-datafield">
+          <xsl:with-param name="srcTag" select="$curTag"/>
+          <xsl:with-param name="dstTag">500</xsl:with-param>
+        </xsl:call-template>
+      </xsl:for-each>
+    </xsl:for-each>
 
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
