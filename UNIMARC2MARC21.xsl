@@ -55,6 +55,20 @@
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">001</xsl:with-param>
     </xsl:call-template>
+
+    <!-- 003 Control Number Identifier -->
+    <xsl:variable name="unimarc003" select="string(mx:controlfield[@tag='003'])"/>
+    <xsl:choose>
+      <!-- BnF (France) -->
+      <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
+        <controlfield tag="003">FrPBN</controlfield>
+      </xsl:when>
+      <!-- BNP (Portugal) -->
+      <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
+        <controlfield tag="003">PoLiBN</controlfield>
+      </xsl:when>
+    </xsl:choose>
+
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">005</xsl:with-param>
     </xsl:call-template>
