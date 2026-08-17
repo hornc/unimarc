@@ -68,6 +68,14 @@
       <xsl:with-param name="dstCodes">2az</xsl:with-param>
     </xsl:call-template>
 
+    <!--021->017 Copyright or Legal Deposit Number-->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">021</xsl:with-param>
+      <xsl:with-param name="dstTag">017</xsl:with-param>
+      <xsl:with-param name="srcCodes">ab</xsl:with-param>
+      <xsl:with-param name="dstCodes">ba</xsl:with-param>
+    </xsl:call-template>
+
     <!--010->020 ISBN-->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">010</xsl:with-param>
