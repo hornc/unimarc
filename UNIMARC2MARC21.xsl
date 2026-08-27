@@ -109,9 +109,9 @@
     </xsl:call-template>
 
     <!-- 801->040 -->
-    <xsl:call-template name="selects">
-      <xsl:with-param name="i">801</xsl:with-param>
-      <xsl:with-param name="count">040</xsl:with-param>
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">801</xsl:with-param>
+      <xsl:with-param name="dstTag">040</xsl:with-param>
       <xsl:with-param name="srcCodes">abcg</xsl:with-param>
       <xsl:with-param name="dstCodes">acde</xsl:with-param>
     </xsl:call-template>
@@ -361,9 +361,9 @@
     </xsl:call-template>
 
     <!-- 856->856 -->
-    <xsl:call-template name="selects">
-      <xsl:with-param name="i">856</xsl:with-param>
-      <xsl:with-param name="count">856</xsl:with-param>
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">856</xsl:with-param>
+      <xsl:with-param name="dstTag">856</xsl:with-param>
     </xsl:call-template>
 
     <!--Capture local data -->
