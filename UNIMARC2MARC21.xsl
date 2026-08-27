@@ -72,6 +72,7 @@
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">005</xsl:with-param>
     </xsl:call-template>
+    <!--008-->
     <xsl:call-template name="transform-100"/>
 
     <!--020->015-->
@@ -431,12 +432,13 @@
   </xsl:template>
   <xsl:template name="transform-100">
     <xsl:variable name="source" select="mx:datafield[@tag='100']/mx:subfield[@code='a']"/>
+    <xsl:variable name="repro-form" select="substring(concat(mx:datafield[@tag='106']/mx:subfield[@code='a'], ' '), 1, 1)"/>
     <xsl:variable name="dest00-05" select="substring($source,03,6)"/>
     <xsl:variable name="dest06" select="translate(substring($source,09,1), 'abcdefghij', 'cdusrqmtpe')"/>
     <xsl:variable name="dest07-14" select="substring($source,10,8)"/>
     <xsl:variable name="dest15-21" select="'       '"/>
     <xsl:variable name="dest22" select="translate(substring($source,18,1), 'bcadekmu', 'abjcdeg ')"/>
-    <xsl:variable name="dest23-27" select="'     '"/>
+    <xsl:variable name="dest23-27" select="concat($repro-form, '    ')"/>
     <xsl:variable name="dest28" select="translate(substring($source,21,1), 'abcdefghy', 'fsllcizo ')"/>
     <xsl:variable name="dest29-32" select="'    '"/>
     <xsl:variable name="dest33" select="substring($source,35,1)"/>
