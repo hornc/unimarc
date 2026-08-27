@@ -283,6 +283,14 @@
       </xsl:for-each>
     </xsl:for-each>
 
+    <!-- 320->504 Bibliography Note -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">320</xsl:with-param>
+      <xsl:with-param name="dstTag">504</xsl:with-param>
+      <xsl:with-param name="srcCodes">a</xsl:with-param>
+      <xsl:with-param name="dstCodes">a</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">600</xsl:with-param>
