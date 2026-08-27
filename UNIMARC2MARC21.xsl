@@ -432,21 +432,25 @@
   </xsl:template>
   <xsl:template name="transform-100">
     <xsl:variable name="source" select="mx:datafield[@tag='100']/mx:subfield[@code='a']"/>
+    <xsl:variable name="f105" select="substring(concat(mx:datafield[@tag='105']/mx:subfield[@code='a'], '             '), 1, 13)"/>
+    <xsl:variable name="illus-code" select="substring($f105, 1, 4)"/>
+    <xsl:variable name="contents-form" select="substring($f105, 5, 4)"/>
     <xsl:variable name="repro-form" select="substring(concat(mx:datafield[@tag='106']/mx:subfield[@code='a'], ' '), 1, 1)"/>
     <xsl:variable name="dest00-05" select="substring($source,03,6)"/>
     <xsl:variable name="dest06" select="translate(substring($source,09,1), 'abcdefghij', 'cdusrqmtpe')"/>
     <xsl:variable name="dest07-14" select="substring($source,10,8)"/>
-    <xsl:variable name="dest15-21" select="'       '"/>
+    <xsl:variable name="dest15-17" select="'   '"/>
+    <xsl:variable name="dest18-21" select="translate($illus-code, 'ny', 'a ')"/>
     <xsl:variable name="dest22" select="translate(substring($source,18,1), 'bcadekmu', 'abjcdeg ')"/>
-    <xsl:variable name="dest23-27" select="concat($repro-form, '    ')"/>
+    <xsl:variable name="dest23-27" select="concat($repro-form, translate($contents-form, 'abcdefghijklmnopqrz', 'bciaderysp   l t n '))"/>
     <xsl:variable name="dest28" select="translate(substring($source,21,1), 'abcdefghy', 'fsllcizo ')"/>
-    <xsl:variable name="dest29-32" select="'    '"/>
+    <xsl:variable name="dest29-32" select="concat(substring($f105, 9, 3), ' ')"/>
     <xsl:variable name="dest33" select="substring($source,35,1)"/>
-    <xsl:variable name="dest34-37" select="'    '"/>
+    <xsl:variable name="dest34-37" select="concat(translate(substring($f105, 13, 1), 'y', ' '), '   ')"/>
     <xsl:variable name="dest38" select="translate(substring($source,22,1), '01', ' o')"/>
     <xsl:variable name="dest39" select="' '"/>
     <controlfield tag="008">
-      <xsl:value-of select="concat($dest00-05, $dest06, $dest07-14, $dest15-21, $dest22, $dest23-27, $dest28, $dest29-32, $dest33, $dest34-37, $dest38, $dest39)"/>
+      <xsl:value-of select="concat($dest00-05, $dest06, $dest07-14, $dest15-17, $dest18-21, $dest22, $dest23-27, $dest28, $dest29-32, $dest33, $dest34-37, $dest38, $dest39)"/>
     </controlfield>
   </xsl:template>
   <xsl:template name="transform-datafield">
