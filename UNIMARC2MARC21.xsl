@@ -366,56 +366,17 @@
       <xsl:with-param name="dstTag">856</xsl:with-param>
     </xsl:call-template>
 
-    <!--Capture local data -->
-    <xsl:call-template name="selects">
-      <xsl:with-param name="i">900</xsl:with-param>
-      <xsl:with-param name="count">1000</xsl:with-param>
-    </xsl:call-template>
-
-    <!--
-    <xsl:for-each select="substring(mx:datafield[@tag],1,1)='9'">
-        <xsl:call-template name="selects">
-          <xsl:with-param name="i">900</xsl:with-param> 
-          <xsl:with-param name="count">1000</xsl:with-param>
+    <!-- Capture local data 9xx -->
+    <xsl:for-each select="mx:datafield[@tag &gt;= 900 and @tag &lt;= 999 and not(@tag = preceding-sibling::mx:datafield/@tag)]">
+      <xsl:variable name="curTag" select="@tag"/>
+      <xsl:for-each select="parent::mx:record">
+        <xsl:call-template name="transform-datafield">
+          <xsl:with-param name="srcTag" select="$curTag"/>
+          <xsl:with-param name="dstTag" select="$curTag"/>
         </xsl:call-template>
+      </xsl:for-each>
     </xsl:for-each>
-    -->
   </xsl:template>
-
-  <xsl:template name="selects">
-    <xsl:param name="i"/>
-    <xsl:param name="count"/>
-
-    <xsl:if test="$i &lt;= $count">
-      <xsl:call-template name="transform-datafield">
-        <xsl:with-param name="srcTag">
-          <xsl:value-of select="$i"/>
-        </xsl:with-param>
-        <xsl:with-param name="dstTag">
-          <xsl:value-of select="$i"/>
-        </xsl:with-param>
-        <xsl:with-param name="srcCodes">
-          <xsl:value-of select="$all-codes"/>
-        </xsl:with-param>
-        <xsl:with-param name="dstCodes">
-          <xsl:value-of select="$all-codes"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:if>
-
-    <!--begin_: RepeatTheLoopUntilFinished-->
-    <xsl:if test="$i &lt; $count">
-      <xsl:call-template name="selects">
-        <xsl:with-param name="i">
-          <xsl:value-of select="$i + 1"/>
-        </xsl:with-param>
-        <xsl:with-param name="count">
-          <xsl:value-of select="$count"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:template>
-
 
   <xsl:template name="transform-leader">
     <xsl:variable name="leader" select="mx:leader"/>
@@ -438,6 +399,7 @@
       </controlfield>
     </xsl:for-each>
   </xsl:template>
+
   <xsl:template name="transform-100">
     <xsl:variable name="source" select="mx:datafield[@tag='100']/mx:subfield[@code='a']"/>
     <xsl:variable name="f105" select="substring(concat(mx:datafield[@tag='105']/mx:subfield[@code='a'], '             '), 1, 13)"/>
@@ -461,6 +423,7 @@
       <xsl:value-of select="concat($dest00-05, $dest06, $dest07-14, $dest15-17, $dest18-21, $dest22, $dest23-27, $dest28, $dest29-32, $dest33, $dest34-37, $dest38, $dest39)"/>
     </controlfield>
   </xsl:template>
+
   <xsl:template name="transform-datafield">
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag" select="@srcTag"/>
@@ -482,7 +445,6 @@
     </xsl:if>
   </xsl:template>
 
-
 <xsl:template name="transform-personal-name">
     <xsl:param name="srcTag"/>
     <xsl:param name="dstTag"/>
@@ -490,7 +452,6 @@
     <xsl:param name="combinecodes_fin"/>
     <xsl:param name="dstCodes1"/>
     <xsl:param name="dstCodes1_fin"/>
-    
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '11')}" ind2=" ">
@@ -519,11 +480,9 @@
     <xsl:param name="combinecodes_fin"/>
     <xsl:param name="dstCodes1"/>
     <xsl:param name="dstCodes1_fin"/>
-    
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '11')}" ind2=" ">
-
         <xsl:call-template name="transform-subfields-combine">
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
           <xsl:with-param name="dstCodes" select="$combinecodes_fin"/>
@@ -535,7 +494,6 @@
             <xsl:with-param name="dstCodes" select="$dstCodes1_fin"/>
           </xsl:call-template>
         </xsl:if>
-        
       </datafield>
     </xsl:for-each>
   </xsl:template>
