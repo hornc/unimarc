@@ -273,9 +273,9 @@
     </xsl:call-template>
 
     <!-- 300-315 and 321 -> 500 General Note -->
-    <xsl:for-each select="mx:datafield[(@tag &gt;= 300 and @tag &lt;= 315) or @tag = 321]/@tag[not(. = preceding::mx:datafield/@tag)]">
-      <xsl:variable name="curTag" select="."/>
-      <xsl:for-each select="parent::mx:datafield/parent::mx:record">
+    <xsl:for-each select="mx:datafield[((@tag &gt;= 300 and @tag &lt;= 315) or @tag = 321) and not(@tag = preceding-sibling::mx:datafield/@tag)]">
+      <xsl:variable name="curTag" select="@tag"/>
+      <xsl:for-each select="parent::mx:record">
         <xsl:call-template name="transform-datafield">
           <xsl:with-param name="srcTag" select="$curTag"/>
           <xsl:with-param name="dstTag">500</xsl:with-param>
