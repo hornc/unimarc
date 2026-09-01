@@ -72,6 +72,7 @@
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">005</xsl:with-param>
     </xsl:call-template>
+
     <!--008-->
     <xsl:call-template name="transform-100"/>
 
@@ -130,6 +131,7 @@
       <xsl:with-param name="dstTag">044</xsl:with-param>
       <xsl:with-param name="srcCodes">ab</xsl:with-param>
       <xsl:with-param name="dstCodes">ab</xsl:with-param>
+      <xsl:with-param name="lowerCase">ab</xsl:with-param>
     </xsl:call-template>
 
     <!-- 128->047 -->
@@ -430,6 +432,7 @@
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:param name="stripChars" select="''"/>
+    <xsl:param name="lowerCase" select="''"/>
 
     <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="mx:datafield[@tag=$srcTag]">
@@ -439,6 +442,7 @@
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
             <xsl:with-param name="dstCodes" select="$dstCodes"/>
             <xsl:with-param name="stripChars" select="$stripChars"/>
+            <xsl:with-param name="lowerCase" select="$lowerCase"/>
           </xsl:call-template>
         </datafield>
       </xsl:for-each>
@@ -555,15 +559,18 @@
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:param name="stripChars" select="''"/>
+    <xsl:param name="lowerCase" select="''"/>
 
     <xsl:for-each select="mx:subfield[contains($srcCodes, @code)]">
       <subfield code="{translate(@code, $srcCodes, $dstCodes)}">
+        <!-- Unconditionally strip characters -->
+        <xsl:variable name="stripped" select="translate(text(), $stripChars, '')"/>
         <xsl:choose>
-          <xsl:when test="$stripChars!=''">
-            <xsl:value-of select="translate(text(), $stripChars, '')"/>
+          <xsl:when test="$lowerCase != '' and contains($lowerCase, @code)">
+            <xsl:value-of select="translate($stripped, $upper, $lower)"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="text()"/>
+            <xsl:value-of select="$stripped"/>
           </xsl:otherwise>
         </xsl:choose>
       </subfield>
