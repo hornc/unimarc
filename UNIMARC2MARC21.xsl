@@ -154,8 +154,8 @@
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">675</xsl:with-param>
       <xsl:with-param name="dstTag">080</xsl:with-param>
-      <xsl:with-param name="srcCodes">av</xsl:with-param>
-      <xsl:with-param name="dstCodes">a2</xsl:with-param>
+      <xsl:with-param name="srcCodes">a</xsl:with-param>
+      <xsl:with-param name="dstCodes">a</xsl:with-param>
     </xsl:call-template>
 
     <!-- 676->082 -->
