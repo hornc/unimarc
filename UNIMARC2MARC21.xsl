@@ -196,49 +196,42 @@
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">510</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">1</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">512</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">4</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">513</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">5</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">514</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">6</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">515</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">7</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">516</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
-      <xsl:with-param name="ind2">3</xsl:with-param>
+      <xsl:with-param name="ind2">8</xsl:with-param>
     </xsl:call-template>
 
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">517</xsl:with-param>
       <xsl:with-param name="dstTag">246</xsl:with-param>
-      <xsl:with-param name="ind1"> </xsl:with-param>
       <xsl:with-param name="ind2">3</xsl:with-param>
     </xsl:call-template>
 
