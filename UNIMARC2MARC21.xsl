@@ -256,6 +256,8 @@
       <xsl:with-param name="dstTag">260</xsl:with-param>
       <xsl:with-param name="srcCodes">acd</xsl:with-param>
       <xsl:with-param name="dstCodes">abc</xsl:with-param>
+      <xsl:with-param name="ind1">#</xsl:with-param>
+      <xsl:with-param name="ind2">#</xsl:with-param>
     </xsl:call-template>
 
     <!-- 215->300 -->
@@ -428,16 +430,21 @@
 
   <xsl:template name="transform-datafield">
     <xsl:param name="srcTag"/>
-    <xsl:param name="dstTag" select="@srcTag"/>
+    <xsl:param name="dstTag" select="$srcTag"/>
     <xsl:param name="srcCodes" select="$all-codes"/>
     <xsl:param name="dstCodes" select="$srcCodes"/>
     <xsl:param name="stripChars" select="''"/>
     <xsl:param name="lowerCase" select="''"/>
+    <xsl:param name="ind1" select="'x'"/>
+    <xsl:param name="ind2" select="'x'"/>
 
     <xsl:if test="mx:datafield[@tag=$srcTag]/mx:subfield[contains($srcCodes, @code)]">
       <xsl:for-each select="mx:datafield[@tag=$srcTag]">
         <datafield tag="{$dstTag}">
-          <xsl:call-template name="copy-indicators"/>
+          <xsl:call-template name="copy-indicators">
+            <xsl:with-param name="ind1" select="$ind1"/>
+            <xsl:with-param name="ind2" select="$ind2"/>
+          </xsl:call-template>
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$srcCodes"/>
             <xsl:with-param name="dstCodes" select="$dstCodes"/>
@@ -503,12 +510,15 @@
   </xsl:template>
 
   <xsl:template name="copy-indicators">
-      <xsl:attribute name="ind1">
-        <xsl:value-of select="translate(@ind1, '#|', '  ')"/>
-      </xsl:attribute>
-      <xsl:attribute name="ind2">
-        <xsl:value-of select="translate(@ind2, '#|', '  ')"/>
-      </xsl:attribute>
+    <xsl:param name="ind1"/>
+    <xsl:param name="ind2"/>
+
+    <xsl:attribute name="ind1">
+      <xsl:value-of select="translate(substring(concat($ind1, @ind1), 1 + ($ind1 = 'x'), 1), '#|', '  ')"/>
+    </xsl:attribute>
+    <xsl:attribute name="ind2">
+      <xsl:value-of select="translate(substring(concat($ind2, @ind2), 1 + ($ind2 = 'x'), 1), '#|', '  ')"/>
+    </xsl:attribute>
   </xsl:template>
 
   <xsl:template name="transform-subfields-combine">
