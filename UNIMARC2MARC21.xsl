@@ -130,7 +130,7 @@
       <xsl:with-param name="srcTag">102</xsl:with-param>
       <xsl:with-param name="dstTag">044</xsl:with-param>
       <xsl:with-param name="srcCodes">ab</xsl:with-param>
-      <xsl:with-param name="dstCodes">ab</xsl:with-param>
+      <xsl:with-param name="dstCodes">cb</xsl:with-param>
       <xsl:with-param name="lowerCase">ab</xsl:with-param>
     </xsl:call-template>
 
