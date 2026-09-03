@@ -172,8 +172,8 @@
       <xsl:with-param name="dstTag">100</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
     </xsl:call-template>
 
     <!-- 500->240 -->
@@ -323,8 +323,8 @@
       <xsl:with-param name="dstTag">700</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
     </xsl:call-template>
 
     <!-- 702->700 -->
@@ -333,8 +333,8 @@
       <xsl:with-param name="dstTag">700</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfg4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cdfg4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
     </xsl:call-template>
 
     <!-- 712->710 -->
