@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:mx="info:lc/xmlns/marcxchange-v1" version="1.0"
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns="http://www.loc.gov/MARC21/slim"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="mx">
+  xmlns:mx="info:lc/xmlns/marcxchange-v1"
+  xmlns:map="http://example.org/map"
+  exclude-result-prefixes="map mx">
+
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <!--
@@ -19,6 +23,20 @@
   <xsl:variable name="all-codes" select="'abcdefghijklmnopqrstuvwxyz123456789'"/>
   <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
   <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+
+  <!-- UNIMARC / ISO 3166 -> MARC21 Country Codes (Table 1 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
+  <map:countries>
+    <entry key="FR" val="fr "/>
+    <entry key="PT" val="po "/>
+  </map:countries>
+
+  <!-- UNIMARC -> MARC21 Relator Codes (Table 2 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
+  <map:relators>
+    <entry key="070" val="aut" desc="author"/>
+    <entry key="340" val="edt" desc="editor"/>
+    <entry key="730" val="trl" desc="translator"/>
+  </map:relators>
+
 
   <xsl:template match="/">
     <xsl:choose>
