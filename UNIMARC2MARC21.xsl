@@ -26,18 +26,21 @@
 
   <!-- UNIMARC / ISO 3166 -> MARC21 Country Codes (Table 1 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
   <map:countries>
-    <entry key="FR" val="fr "/>
-    <entry key="PT" val="po "/>
+    <map:entry key="FR" val="fr "/>
+    <map:entry key="PT" val="po "/>
   </map:countries>
 
   <!-- UNIMARC -> MARC21 Relator Codes (Table 2 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
   <map:relators>
-    <entry key="070" val="aut" desc="author"/>
-    <entry key="340" val="edt" desc="editor"/>
-    <entry key="440" val="ill" desc="illustrator"/>
-    <entry key="730" val="trl" desc="translator"/>
+    <map:entry key="070" val="aut" desc="author"/>
+    <map:entry key="340" val="edt" desc="editor"/>
+    <map:entry key="440" val="ill" desc="illustrator"/>
+    <map:entry key="730" val="trl" desc="translator"/>
   </map:relators>
 
+  <xsl:key name="relator-map"
+    match="map:relators/map:entry"
+    use="@key"/>
 
   <xsl:template match="/">
     <xsl:choose>
@@ -191,8 +194,8 @@
       <xsl:with-param name="dstTag">100</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu</xsl:with-param>
     </xsl:call-template>
 
     <!-- 500->240 -->
@@ -342,8 +345,8 @@
       <xsl:with-param name="dstTag">700</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu</xsl:with-param>
     </xsl:call-template>
 
     <!-- 702->700 -->
@@ -352,8 +355,8 @@
       <xsl:with-param name="dstTag">700</xsl:with-param>
       <xsl:with-param name="combinecodes">ab</xsl:with-param>
       <xsl:with-param name="combinecodes_fin">aa</xsl:with-param>
-      <xsl:with-param name="dstCodes1">cdfgp4</xsl:with-param>
-      <xsl:with-param name="dstCodes1_fin">cbdqu4</xsl:with-param>
+      <xsl:with-param name="dstCodes1">cdfgp</xsl:with-param>
+      <xsl:with-param name="dstCodes1_fin">cbdqu</xsl:with-param>
     </xsl:call-template>
 
     <!-- 712->710 -->
@@ -478,20 +481,35 @@
 
     <xsl:for-each select="mx:datafield[@tag=$srcTag]">
       <datafield tag="{$dstTag}" ind1="{translate(@ind2, '#|', '11')}" ind2=" ">
-        
+
         <xsl:call-template name="transform-subfields-personal-combine">
           <xsl:with-param name="srcCodes" select="$combinecodes"/>
           <xsl:with-param name="dstCodes" select="$combinecodes_fin"/>
           <xsl:with-param name="stripChars">,</xsl:with-param>
         </xsl:call-template>
 
-        <xsl:if test="$dstCodes1!=''">          
+        <xsl:if test="$dstCodes1 != ''">
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$dstCodes1"/>
             <xsl:with-param name="dstCodes" select="$dstCodes1_fin"/>
           </xsl:call-template>
         </xsl:if>
-        
+
+	<!-- Make the $4 relator substitution from UNIMARC numeric to MARC21 3-char codes -->
+        <xsl:for-each select="mx:subfield[@code='4']">
+          <xsl:variable name="rawCode" select="normalize-space(.)"/>
+          <xsl:variable name="mappedCode">
+            <xsl:for-each select="document('')">
+              <xsl:value-of select="key('relator-map', $rawCode)/@val"/>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:if test="string-length($mappedCode) &gt; 0">
+            <subfield code="4">
+              <xsl:value-of select="$mappedCode"/>
+            </subfield>
+          </xsl:if>
+        </xsl:for-each>
+
       </datafield>
     </xsl:for-each>
   </xsl:template>
@@ -511,7 +529,7 @@
           <xsl:with-param name="dstCodes" select="$combinecodes_fin"/>
         </xsl:call-template>
 
-        <xsl:if test="$dstCodes1!=''">          
+        <xsl:if test="$dstCodes1 != ''">
           <xsl:call-template name="transform-subfields">
             <xsl:with-param name="srcCodes" select="$dstCodes1"/>
             <xsl:with-param name="dstCodes" select="$dstCodes1_fin"/>
@@ -534,7 +552,7 @@
   </xsl:template>
 
   <xsl:template name="transform-subfields-combine">
-    <xsl:param name="data_code" select ="'a'"/>
+    <xsl:param name="data_code" select="'a'"/>
     <xsl:param name="srcCodes"/>
     <xsl:param name="dstCodes"/>
     <xsl:param name="stripChars" select="''"/>
@@ -556,7 +574,7 @@
   </xsl:template>
 
   <xsl:template name="transform-subfields-personal-combine">
-    <xsl:param name="data_code" select ="'a'"/>
+    <xsl:param name="data_code" select="'a'"/>
     <xsl:param name="srcCodes"/>
     <xsl:param name="dstCodes"/>
     <xsl:param name="stripChars" select="''"/>
