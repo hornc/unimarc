@@ -34,6 +34,7 @@
   <map:relators>
     <entry key="070" val="aut" desc="author"/>
     <entry key="340" val="edt" desc="editor"/>
+    <entry key="440" val="ill" desc="illustrator"/>
     <entry key="730" val="trl" desc="translator"/>
   </map:relators>
 
