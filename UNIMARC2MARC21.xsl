@@ -32,10 +32,115 @@
 
   <!-- UNIMARC -> MARC21 Relator Codes (Table 2 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
   <map:relators>
+    <map:entry key="005" val="act" desc="actor"/>
+    <map:entry key="010" val="adp" desc="adapter"/>
+    <map:entry key="020" val="ann" desc="annotator"/>
+    <map:entry key="030" val="arr" desc="arranger"/>
+    <map:entry key="040" val="art" desc="artist"/>
+    <map:entry key="050" val="asg" desc="assignee"/>
+    <map:entry key="060" val="asn" desc="associated name"/>
+    <map:entry key="065" val="auc" desc="auctioneer"/>
     <map:entry key="070" val="aut" desc="author"/>
+    <map:entry key="072" val="aqt" desc="author in quotations or text abstract"/>
+    <map:entry key="075" val="aft" desc="author of afterword, colophon, etc."/>
+    <map:entry key="080" val="aui" desc="author of introd"/>
+    <map:entry key="090" val="aus" desc="author of screenplay"/>
+    <map:entry key="100" val="ant" desc="bibl. antecedent"/>
+    <map:entry key="110" val="bnd" desc="binder"/>
+    <map:entry key="120" val="bdd" desc="binding designer"/>
+    <map:entry key="130" val="bkd" desc="book designer"/>
+    <map:entry key="140" val="bjd" desc="bkjacket designer"/>
+    <map:entry key="150" val="bpd" desc="bkplate designer"/>
+    <map:entry key="160" val="bsl" desc="bookseller"/>
+    <map:entry key="170" val="cll" desc="calligrapher"/>
+    <map:entry key="180" val="ctg" desc="cartographer"/>
+    <map:entry key="190" val="cns" desc="censor"/>
+    <map:entry key="200" val="chr" desc="choreographer"/>
+    <map:entry key="205" val="clb" desc="collaborator"/>
+    <map:entry key="210" val="cmm" desc="commentator"/>
+    <map:entry key="212" val="cwt" desc="commentator for written text"/>
+    <map:entry key="220" val="com" desc="compiler"/>
+    <map:entry key="230" val="cmp" desc="composer"/>
+    <map:entry key="240" val="cmt" desc="compositor"/>
+    <map:entry key="245" val="ccp" desc="conceptor"/>
+    <map:entry key="250" val="cnd" desc="conductor"/>
+    <map:entry key="255" val="csp" desc="consultant to a project"/>
+    <map:entry key="260" val="cph" desc="copyright holder"/>
+    <map:entry key="270" val="crr" desc="corrector"/>
+    <map:entry key="273" val="cur" desc="curator"/>
+    <map:entry key="275" val="dnc" desc="dancer"/>
+    <map:entry key="280" val="dte" desc="dedicatee"/>
+    <map:entry key="290" val="dto" desc="dedicator"/>
+    <map:entry key="295" val="dgg" desc="degree grantor"/>
+    <map:entry key="300" val="drt" desc="director"/>
+    <map:entry key="305" val="dis" desc="dissertant"/>
+    <map:entry key="310" val="dst" desc="distributor"/>
+    <map:entry key="320" val="dnr" desc="donor"/>
+    <map:entry key="330" val="dub" desc="dubious author"/>
     <map:entry key="340" val="edt" desc="editor"/>
+    <map:entry key="350" val="egr" desc="engraver"/>
+    <map:entry key="360" val="etr" desc="etcher"/>
+    <map:entry key="365" val="exp" desc="expert"/>
+    <map:entry key="370" val="flm" desc="film editor"/>
+    <map:entry key="380" val="frg" desc="forger"/>
+    <map:entry key="390" val="fmo" desc="former owner"/>
+    <map:entry key="400" val="fnd" desc="funder"/>
+    <map:entry key="410" val="grt" desc="graphic technician"/>
+    <map:entry key="420" val="hnr" desc="honoree"/>
+    <map:entry key="430" val="ilu" desc="illuminator"/>
     <map:entry key="440" val="ill" desc="illustrator"/>
+    <map:entry key="450" val="ins" desc="inscriber"/>
+    <map:entry key="460" val="ive" desc="interviewee"/>
+    <map:entry key="470" val="ivr" desc="interviewer"/>
+    <map:entry key="480" val="lbt" desc="librettist"/>
+    <map:entry key="490" val="lse" desc="licensee"/>
+    <map:entry key="500" val="lso" desc="licensor"/>
+    <map:entry key="510" val="ltg" desc="lithographer"/>
+    <map:entry key="520" val="lyr" desc="lyricist"/>
+    <map:entry key="530" val="mte" desc="metal engraver"/>
+    <map:entry key="540" val="mon" desc="monitor/contractor"/>
+    <map:entry key="545" val="mus" desc="musician"/>
+    <map:entry key="550" val="nrt" desc="narrator"/>
+    <map:entry key="555" val="opn" desc="opponent"/>
+    <map:entry key="557" val="orm" desc="organizer of meeting"/>
+    <map:entry key="560" val="org" desc="originator"/>
+    <map:entry key="570" val="oth" desc="other"/>
+    <map:entry key="580" val="ppm" desc="papermaker"/>
+    <map:entry key="582" val="pta" desc="patent applicant"/>
+    <map:entry key="584" val="inv" desc="inventor"/>
+    <map:entry key="587" val="pth" desc="patent holder"/>
+    <map:entry key="590" val="prf" desc="performer"/>
+    <map:entry key="595" val="res" desc="research"/>
+    <map:entry key="600" val="pht" desc="photographer"/>
+    <map:entry key="610" val="prt" desc="printer"/>
+    <map:entry key="620" val="pop" desc="printer of plates"/>
+    <map:entry key="630" val="pro" desc="producer"/>
+    <map:entry key="635" val="prg" desc="programmer"/>
+    <map:entry key="640" val="pfr" desc="proofreader"/>
+    <map:entry key="650" val="pbl" desc="publisher"/>
+    <map:entry key="651" val="pbd" desc="publishing director"/>
+    <map:entry key="660" val="rcp" desc="recipient"/>
+    <map:entry key="670" val="rce" desc="recording engineer"/>
+    <map:entry key="673" val="rth" desc="research team head"/>
+    <map:entry key="675" val="rev" desc="reviewer"/>
+    <map:entry key="677" val="rtm" desc="research team member"/>
+    <map:entry key="680" val="rbr" desc="rubricator"/>
+    <map:entry key="690" val="sce" desc="scenarist"/>
+    <map:entry key="695" val="sad" desc="scientific advisor"/>
+    <map:entry key="700" val="scr" desc="scribe"/>
+    <map:entry key="705" val="scl" desc="sulptor"/>
+    <map:entry key="710" val="sec" desc="secretary"/>
+    <map:entry key="720" val="sgn" desc="signer"/>
+    <map:entry key="721" val="sng" desc="singer"/>
+    <map:entry key="723" val="spn" desc="sponsor"/>
+    <map:entry key="725" val="stn" desc="standards body"/>
+    <map:entry key="727" val="ths" desc="thesis advisor"/>
     <map:entry key="730" val="trl" desc="translator"/>
+    <map:entry key="740" val="tyd" desc="type designer"/>
+    <map:entry key="750" val="tyg" desc="typographer"/>
+    <map:entry key="755" val="voc" desc="vocalist"/>
+    <map:entry key="760" val="wde" desc="wood engraver"/>
+    <map:entry key="770" val="wam" desc="writer of accompanying material"/>
   </map:relators>
 
   <xsl:key name="relator-map"
