@@ -549,11 +549,12 @@
     <xsl:variable name="dest28" select="translate(substring($source,21,1), 'abcdefghy', 'fsllcizo ')"/>
     <xsl:variable name="dest29-32" select="concat(substring($f105, 9, 3), ' ')"/>
     <xsl:variable name="dest33" select="substring($source,35,1)"/>
-    <xsl:variable name="dest34-37" select="concat(translate(substring($f105, 13, 1), 'y', ' '), '   ')"/>
+    <xsl:variable name="dest34" select="translate(substring($f105, 13, 1), 'y', ' ')"/>
+    <xsl:variable name="dest35-37" select="substring(concat(mx:datafield[@tag='101']/mx:subfield[@code='a'][1], '   '), 1, 3)"/>
     <xsl:variable name="dest38" select="translate(substring($source,22,1), '01', ' o')"/>
     <xsl:variable name="dest39" select="' '"/>
     <controlfield tag="008">
-      <xsl:value-of select="concat($dest00-05, $dest06, $dest07-14, $dest15-17, $dest18-21, $dest22, $dest23-27, $dest28, $dest29-32, $dest33, $dest34-37, $dest38, $dest39)"/>
+      <xsl:value-of select="concat($dest00-05, $dest06, $dest07-14, $dest15-17, $dest18-21, $dest22, $dest23-27, $dest28, $dest29-32, $dest33, $dest34, $dest35-37, $dest38, $dest39)"/>
     </controlfield>
   </xsl:template>
 
