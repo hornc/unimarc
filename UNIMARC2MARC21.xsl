@@ -30,6 +30,10 @@
     <map:entry key="PT" val="po "/>
   </map:countries>
 
+  <xsl:key name="country-map"
+    match="map:countries/map:entry"
+    use="@key"/>
+
   <!-- UNIMARC -> MARC21 Relator Codes (Table 2 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
   <map:relators>
     <map:entry key="005" val="act" desc="actor"/>
@@ -533,7 +537,12 @@
     <xsl:variable name="dest00-05" select="substring($source,03,6)"/>
     <xsl:variable name="dest06" select="translate(substring($source,09,1), 'abcdefghij', 'cdusrqmtpe')"/>
     <xsl:variable name="dest07-14" select="substring($source,10,8)"/>
-    <xsl:variable name="dest15-17" select="'   '"/>
+    <xsl:variable name="dest15-17">
+      <xsl:variable name="code" select="normalize-space(mx:datafield[@tag='102']/mx:subfield[@code='a'][1])"/>
+      <xsl:for-each select="document('')">
+        <xsl:value-of select="substring(concat(key('country-map', $code)/@val, 'xx '), 1, 3)"/>
+      </xsl:for-each>
+    </xsl:variable>
     <xsl:variable name="dest18-21" select="translate($illus-code, 'ny', 'a ')"/>
     <xsl:variable name="dest22" select="translate(substring($source,18,1), 'bcadekmu', 'abjcdeg ')"/>
     <xsl:variable name="dest23-27" select="concat($repro-form, translate($contents-form, 'abcdefghijklmnopqrz', 'bciaderysp   l t n '))"/>
