@@ -762,7 +762,7 @@
     <xsl:variable name="leader07" select="substring($leader,08,1)"/>
     <xsl:variable name="leader08-16" select="' a2200000'"/>
     <xsl:variable name="leader17" select="translate(substring($leader,18,1), '23', '87')"/>
-    <xsl:variable name="leader18" select="translate(substring($leader,19,1), ' n', 'i ')"/>
+    <xsl:variable name="leader18" select="translate(substring($leader,19,1), ' n', 'c ')"/>
     <xsl:variable name="leader19-23" select="' 4500'"/>
     <leader>
       <xsl:value-of select="concat('00000', $leader05, $leader06, $leader07, $leader08-16, $leader17, $leader18, $leader19-23)"/>
