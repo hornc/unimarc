@@ -257,13 +257,38 @@
     </xsl:call-template>
 
     <!-- 102->044 -->
-    <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">102</xsl:with-param>
-      <xsl:with-param name="dstTag">044</xsl:with-param>
-      <xsl:with-param name="srcCodes">ab</xsl:with-param>
-      <xsl:with-param name="dstCodes">cb</xsl:with-param>
-      <xsl:with-param name="lowerCase">ab</xsl:with-param>
-    </xsl:call-template>
+    <xsl:if test="mx:datafield[@tag='102']">
+      <datafield tag="044" ind1=" " ind2=" ">
+        <xsl:for-each select="mx:datafield[@tag='102']/mx:subfield[@code='a']">
+          <xsl:variable name="code" select="."/>
+          <xsl:variable name="mapped">
+            <xsl:for-each select="document('')">
+              <xsl:value-of select="key('country-map', $code)/@val"/>
+            </xsl:for-each>
+          </xsl:variable>
+          <!-- Get $b (subentity) immediately following $a -->
+          <xsl:variable name="subentity" select="following-sibling::mx:subfield[1][@code='b']"/>
+
+          <xsl:if test="string-length($mapped) &gt; 0">
+            <subfield code="a">
+              <xsl:value-of select="$mapped"/>
+            </subfield>
+          </xsl:if>
+          <!-- Interleave $b between $a and $c, if it exists -->
+          <xsl:if test="string-length($subentity) &gt; 0">
+            <subfield code="b">
+              <xsl:value-of select="$subentity"/>
+            </subfield>
+          </xsl:if>
+          <!-- Output $c = case adjusted ISO -->
+          <xsl:if test="string-length($code) &gt; 0">
+            <subfield code="c">
+              <xsl:value-of select="translate($code, $upper, $lower)"/>
+            </subfield>
+          </xsl:if>
+        </xsl:for-each>
+      </datafield>
+    </xsl:if>
 
     <!-- 128->047 -->
     <xsl:call-template name="transform-datafield">
