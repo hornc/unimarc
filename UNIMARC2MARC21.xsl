@@ -26,8 +26,232 @@
 
   <!-- UNIMARC / ISO 3166 -> MARC21 Country Codes (Table 1 : https://www.loc.gov/marc/unimarctomarc21_tables.pdf) -->
   <map:countries>
-    <map:entry key="FR" val="fr "/>
-    <map:entry key="PT" val="po "/>
+    <map:entry key="AD" val="an " desc="Andorra"/>
+    <map:entry key="AE" val="ts " desc="United Arab Em."/>
+    <map:entry key="AF" val="af " desc="Afghanistan"/>
+    <map:entry key="AG" val="aq " desc="Antigua"/>
+    <map:entry key="AL" val="aa " desc="Albania"/>
+    <map:entry key="AN" val="na " desc="Netherlands Antilles"/>
+    <map:entry key="AO" val="ao " desc="Angola"/>
+    <map:entry key="AQ" val="ay " desc="Antarctica"/>
+    <map:entry key="AR" val="ag " desc="Argentina"/>
+    <map:entry key="AS" val="as " desc="American Samoa"/>
+    <map:entry key="AT" val="au " desc="Austria"/>
+    <map:entry key="AU" val="at " desc="Australia"/>
+    <map:entry key="BB" val="bb " desc="Barbados"/>
+    <map:entry key="BD" val="bg " desc="Bangladesh"/>
+    <map:entry key="BE" val="be " desc="Belgium"/>
+    <map:entry key="BG" val="bu " desc="Bulgaria"/>
+    <map:entry key="BH" val="ba " desc="Bahrain"/>
+    <map:entry key="BI" val="bd " desc="Burundi"/>
+    <map:entry key="BJ" val="dm " desc="Benin (Dahomey)"/>
+    <map:entry key="BM" val="bm " desc="Bermuda"/>
+    <map:entry key="BN" val="cc " desc="China (PRC)"/>
+    <map:entry key="BN" val="bx " desc="Brunei"/>
+    <map:entry key="BO" val="bo " desc="Bolivia"/>
+    <map:entry key="BR" val="bl " desc="Brazil"/>
+    <map:entry key="BS" val="bf " desc="Bahamas"/>
+    <map:entry key="BT" val="bt " desc="Bhutan"/>
+    <map:entry key="BU" val="br " desc="Burma"/>
+    <map:entry key="BV" val="bv " desc="Bouvet Island"/>
+    <map:entry key="BW" val="bs " desc="Botswana"/>
+    <map:entry key="BY" val="bw " desc="Belaru"/>
+    <map:entry key="BZ" val="bh " desc="Belize"/>
+    <map:entry key="CA" val="xxc" desc="Canada"/>
+    <map:entry key="CC" val="xb " desc="Cocos Islands"/>
+    <map:entry key="CF" val="cx " desc="Central African Rep."/>
+    <map:entry key="CG" val="cf " desc="Congo (Brazzaville)"/>
+    <map:entry key="CH" val="sz " desc="Switzerland"/>
+    <map:entry key="CI" val="iv " desc="Ivory Coast"/>
+    <map:entry key="CK" val="cw " desc="Cook Islands"/>
+    <map:entry key="CL" val="cl " desc="Chile"/>
+    <map:entry key="CM" val="cm " desc="Cameroon"/>
+    <map:entry key="CO" val="ck " desc="Colombia"/>
+    <map:entry key="CR" val="cr " desc="Costa Rica"/>
+    <map:entry key="CT" val="cp " desc="Canton/Enderbury Is."/>
+    <map:entry key="CU" val="cu " desc="Cuba"/>
+    <map:entry key="CV" val="cv " desc="Cape Verde"/>
+    <map:entry key="CX" val="xa " desc="Christmas Island"/>
+    <map:entry key="CY" val="cy " desc="Cyprus"/>
+    <map:entry key="CZ" val="xr " desc="Czech Republic"/>
+    <map:entry key="DE" val="gw " desc="Germany"/>
+    <map:entry key="DJ" val="ft " desc="Djibouti"/>
+    <map:entry key="DK" val="dk " desc="Denmark"/>
+    <map:entry key="DM" val="dq " desc="Dominica"/>
+    <map:entry key="DO" val="dr " desc="Dominican Republic"/>
+    <map:entry key="DZ" val="ae " desc="Algeria"/>
+    <map:entry key="EC" val="ec " desc="Ecuador"/>
+    <map:entry key="EG" val="ua " desc="Egypt (UAR)"/>
+    <map:entry key="EH" val="ss " desc="Western Sahara"/>
+    <map:entry key="ES" val="sp " desc="Spain"/>
+    <map:entry key="ET" val="et " desc="Ethiopia"/>
+    <map:entry key="FI" val="fi " desc="Finland"/>
+    <map:entry key="FJ" val="fj " desc="Fiji"/>
+    <map:entry key="FK" val="fk " desc="Falkland Islands"/>
+    <map:entry key="FO" val="fa " desc="Faeroe Islands"/>
+    <map:entry key="FQ" val="fs " desc="French So./Antarctic"/>
+    <map:entry key="FR" val="fr " desc="France"/>
+    <map:entry key="GA" val="go " desc="Gabon"/>
+    <map:entry key="GB" val="xxk" desc="United Kingdom"/>
+    <map:entry key="GD" val="gd " desc="Grenada"/>
+    <map:entry key="GF" val="fg " desc="French Guiana"/>
+    <map:entry key="GH" val="gh " desc="Ghana"/>
+    <map:entry key="GI" val="gi " desc="Gibraltar"/>
+    <map:entry key="GL" val="gl " desc="Greenland"/>
+    <map:entry key="GM" val="gm " desc="Gambia"/>
+    <map:entry key="GN" val="gv " desc="Guinea"/>
+    <map:entry key="GP" val="gp " desc="Guadeloupe"/>
+    <map:entry key="GQ" val="eg " desc="Equatorial Guinea"/>
+    <map:entry key="GR" val="gr " desc="Greece"/>
+    <map:entry key="GT" val="gt " desc="Guatemala"/>
+    <map:entry key="GU" val="gu " desc="Guam"/>
+    <map:entry key="GW" val="pg " desc="Guinea-Bissau"/>
+    <map:entry key="GY" val="gy " desc="Guyana"/>
+    <map:entry key="HK" val="hk " desc="Hong Kong"/>
+    <map:entry key="HM" val="hm " desc="Heard &amp; McDonald Isl."/>
+    <map:entry key="HN" val="ho " desc="Honduras"/>
+    <map:entry key="HT" val="ht " desc="Haiti"/>
+    <map:entry key="HU" val="hu " desc="Hungary"/>
+    <map:entry key="HV" val="uv " desc="Burkina Faso"/>
+    <map:entry key="ID" val="io " desc="Indonesia"/>
+    <map:entry key="IE" val="ie " desc="Ireland"/>
+    <map:entry key="IL" val="is " desc="Israel"/>
+    <map:entry key="IN" val="ii " desc="India"/>
+    <map:entry key="IO" val="bi " desc="British Indian Ocean Terr."/>
+    <map:entry key="IQ" val="iq " desc="Iraq"/>
+    <map:entry key="IR" val="ir " desc="Iran"/>
+    <map:entry key="IS" val="ic " desc="Iceland"/>
+    <map:entry key="IT" val="it " desc="Italy"/>
+    <map:entry key="JM" val="jm " desc="Jamaica"/>
+    <map:entry key="JO" val="jo " desc="Jordan"/>
+    <map:entry key="JP" val="ja " desc="Japan"/>
+    <map:entry key="JT" val="ji " desc="Johnston Atoll"/>
+    <map:entry key="KE" val="ke " desc="Kenya"/>
+    <map:entry key="KH" val="cb " desc="Cambodia (Kampuchea)"/>
+    <map:entry key="KI" val="gb " desc="Kiribati"/>
+    <map:entry key="KM" val="cq " desc="Comoros"/>
+    <map:entry key="KN" val="xd " desc="St. Chris. &amp; Nevis Isl."/>
+    <map:entry key="KP" val="kn " desc="Korea (North)"/>
+    <map:entry key="KR" val="ko " desc="Korea (South)"/>
+    <map:entry key="KW" val="ku " desc="Kuwait"/>
+    <map:entry key="KY" val="cj " desc="Cayman Islands"/>
+    <map:entry key="LA" val="ls " desc="Laos"/>
+    <map:entry key="LB" val="le " desc="Lebanon"/>
+    <map:entry key="LC" val="xk " desc="Saint Lucia"/>
+    <map:entry key="LI" val="lh " desc="Liechtenstein"/>
+    <map:entry key="LK" val="ce " desc="Sri Lanka (Ceylon)"/>
+    <map:entry key="LR" val="lb " desc="Liberia"/>
+    <map:entry key="LS" val="lo " desc="Lesotho"/>
+    <map:entry key="LU" val="lu " desc="Luxembourg"/>
+    <map:entry key="LY" val="ly " desc="Libya"/>
+    <map:entry key="MA" val="mr " desc="Morocco"/>
+    <map:entry key="MC" val="mc " desc="Monaco"/>
+    <map:entry key="MG" val="mg " desc="Madagascar"/>
+    <map:entry key="MI" val="xf " desc="Midway Islands"/>
+    <map:entry key="ML" val="ml " desc="Mali"/>
+    <map:entry key="MN" val="mp " desc="Mongolia"/>
+    <map:entry key="MO" val="mh " desc="Macao"/>
+    <map:entry key="MQ" val="mq " desc="Martinique"/>
+    <map:entry key="MR" val="mu " desc="Mauritania"/>
+    <map:entry key="MS" val="mj " desc="Montserrat"/>
+    <map:entry key="MT" val="mm " desc="Malta"/>
+    <map:entry key="MU" val="mf " desc="Mauritius"/>
+    <map:entry key="MV" val="xc " desc="Maldive Islands"/>
+    <map:entry key="MW" val="mw " desc="Malawi"/>
+    <map:entry key="MX" val="mx " desc="Mexico"/>
+    <map:entry key="MY" val="my " desc="Malaysia"/>
+    <map:entry key="MZ" val="mz " desc="Mozambique"/>
+    <map:entry key="NA" val="sx " desc="Namibia"/>
+    <map:entry key="NC" val="nl " desc="New Caledonia"/>
+    <map:entry key="NE" val="ng " desc="Niger"/>
+    <map:entry key="NF" val="nx " desc="Norfolk Island"/>
+    <map:entry key="NG" val="nr " desc="Nigeria"/>
+    <map:entry key="NL" val="ne " desc="Netherlands"/>
+    <map:entry key="NO" val="no " desc="Norway"/>
+    <map:entry key="NP" val="np " desc="Nepal"/>
+    <map:entry key="NQ" val="ay " desc="Dronning Maud Land"/>
+    <map:entry key="NR" val="nu " desc="Nauru"/>
+    <map:entry key="NT" val="iy " desc="Iraq-Saudi Neutral Zone"/>
+    <map:entry key="NU" val="xh " desc="Niue"/>
+    <map:entry key="NV" val="uc " desc="U.S. Misc. Carribbean Isl."/>
+    <map:entry key="NZ" val="nz " desc="New Zealand"/>
+    <map:entry key="OM" val="mk " desc="Oman"/>
+    <map:entry key="PA" val="pn " desc="Panama"/>
+    <map:entry key="PC" val="tt " desc="Trust Terr./Pac. Isl."/>
+    <map:entry key="PE" val="pe " desc="Peru"/>
+    <map:entry key="PF" val="fp " desc="French Polynesia"/>
+    <map:entry key="PG" val="pp " desc="Papua New Guinea"/>
+    <map:entry key="PH" val="ph " desc="Philippines"/>
+    <map:entry key="PI" val="pf " desc="Paracel Islands"/>
+    <map:entry key="PK" val="pk " desc="Pakistan"/>
+    <map:entry key="PL" val="pl " desc="Poland"/>
+    <map:entry key="PM" val="xl " desc="St Pierre Miquelon"/>
+    <map:entry key="PN" val="pc " desc="Pitcairn Island"/>
+    <map:entry key="PR" val="pr " desc="Puerto Rico"/>
+    <map:entry key="PT" val="po " desc="Portugal"/>
+    <map:entry key="PU" val="up " desc="U.S. Pacific Isl."/>
+    <map:entry key="PY" val="py " desc="Paragua"/>
+    <map:entry key="QA" val="qa " desc="Qatar"/>
+    <map:entry key="RE" val="re " desc="Reunion"/>
+    <map:entry key="RH" val="rh " desc="Rhodesia"/>
+    <map:entry key="RO" val="rm " desc="Romania"/>
+    <map:entry key="RW" val="rw " desc="Rwanda"/>
+    <map:entry key="SA" val="su " desc="Saudi Arabia"/>
+    <map:entry key="SB" val="bp " desc="Solomon Islands"/>
+    <map:entry key="SC" val="se " desc="Seychelles"/>
+    <map:entry key="SD" val="sj " desc="Sudan"/>
+    <map:entry key="SE" val="sw " desc="Sweden"/>
+    <map:entry key="SG" val="si " desc="Singapore"/>
+    <map:entry key="SH" val="xj " desc="Saint Helena"/>
+    <map:entry key="SI" val="xv " desc="Slovenia"/>
+    <map:entry key="SI" val="xp " desc="Spratly Island"/>
+    <map:entry key="SJ" val="sb " desc="Svalbard"/>
+    <map:entry key="SK" val="xo " desc="Slovakia"/>
+    <map:entry key="SL" val="sl " desc="Sierra Leone"/>
+    <map:entry key="SM" val="sm " desc="San Marino"/>
+    <map:entry key="SN" val="sg " desc="Senegal"/>
+    <map:entry key="SO" val="so " desc="Somalia"/>
+    <map:entry key="SR" val="sr " desc="Surinam"/>
+    <map:entry key="ST" val="sf " desc="Sao Tome e Principe"/>
+    <map:entry key="SU" val="xx " desc="USSR"/>
+    <map:entry key="SV" val="es " desc="El Salvador"/>
+    <map:entry key="SY" val="sy " desc="Syria"/>
+    <map:entry key="SZ" val="sq " desc="Swaziland"/>
+    <map:entry key="TC" val="tc " desc="Turks &amp; Caicos Isl."/>
+    <map:entry key="TD" val="cd " desc="Chad"/>
+    <map:entry key="TG" val="tg " desc="Togo"/>
+    <map:entry key="TH" val="th " desc="Thailand"/>
+    <map:entry key="TK" val="tl " desc="Tokelau Islands"/>
+    <map:entry key="TN" val="ti " desc="Tunisia"/>
+    <map:entry key="TO" val="to " desc="Tonga"/>
+    <map:entry key="TP" val="io " desc="East Timor"/>
+    <map:entry key="TR" val="tu " desc="Turkey"/>
+    <map:entry key="TT" val="tr " desc="Trinidad and Tobago"/>
+    <map:entry key="TV" val="tv " desc="Tuvalu"/>
+    <map:entry key="TW" val="ch " desc="China (Taiwan)"/>
+    <map:entry key="TZ" val="tz " desc="Tanzania"/>
+    <map:entry key="UA" val="un " desc="Ukraine"/>
+    <map:entry key="UG" val="ug " desc="Uganda"/>
+    <map:entry key="US" val="xxu" desc="United States"/>
+    <map:entry key="UY" val="uy " desc="Uruguay"/>
+    <map:entry key="VA" val="vc " desc="Vatican City"/>
+    <map:entry key="VC" val="xm " desc="Saint Vincent"/>
+    <map:entry key="VE" val="ve " desc="Venezuela"/>
+    <map:entry key="VG" val="vb " desc="Virgin Is. (British)"/>
+    <map:entry key="VI" val="vi " desc="Virgin Is. (U.S.)"/>
+    <map:entry key="VN" val="vm " desc="Vietnam"/>
+    <map:entry key="VU" val="nn " desc="Vanuatu"/>
+    <map:entry key="WF" val="wf " desc="Wallis and Futuna"/>
+    <map:entry key="WK" val="wk " desc="Wake Island"/>
+    <map:entry key="WS" val="ws " desc="Western Samoa"/>
+    <map:entry key="XV" val="vp " desc="Various places"/>
+    <map:entry key="YD" val="ys " desc="Yemen (Aden)"/>
+    <map:entry key="YE" val="ye " desc="Yemen (Sana)"/>
+    <map:entry key="YU" val="yu " desc="Yugoslavia"/>
+    <map:entry key="ZA" val="sa " desc="South Africa"/>
+    <map:entry key="ZM" val="za " desc="Zambia"/>
+    <map:entry key="ZR" val="cg " desc="Zaire (Congo)"/>
+    <map:entry key="ZW" val="rh " desc="Zimbabwe"/>
   </map:countries>
 
   <xsl:key name="country-map"
