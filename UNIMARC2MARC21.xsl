@@ -416,7 +416,7 @@
     <xsl:choose>
       <!-- BnF (France) -->
       <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
-        <controlfield tag="003">FrPBN</controlfield>
+        <controlfield tag="003">FR-751131010</controlfield>
       </xsl:when>
       <!-- BNP (Portugal) -->
       <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
