@@ -413,25 +413,29 @@
 
     <!-- 003 Control Number Identifier -->
     <xsl:variable name="unimarc003" select="string(mx:controlfield[@tag='003'])"/>
-    <xsl:choose>
-      <!-- BnF (France) -->
-      <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
-        <controlfield tag="003">FR-751131010</controlfield>
-      </xsl:when>
-      <!-- BNP (Portugal) -->
-      <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
-        <controlfield tag="003">PoLiBN</controlfield>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:variable name="agencyCode">
+      <xsl:choose>
+        <!-- BnF (France) -->
+        <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">FR-751131015</xsl:when>
+        <!-- BNP (Portugal) -->
+        <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">PoLiBN</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:if test="string-length($agencyCode) &gt; 0">
+      <controlfield tag="003">
+        <xsl:value-of select="$agencyCode"/>
+      </controlfield>
+    </xsl:if>
 
+    <!-- 005 -->
     <xsl:call-template name="copy-control">
       <xsl:with-param name="tag">005</xsl:with-param>
     </xsl:call-template>
 
-    <!--008-->
+    <!-- 008 -->
     <xsl:call-template name="transform-100"/>
 
-    <!--020->015-->
+    <!-- 020->015 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">020</xsl:with-param>
       <xsl:with-param name="dstTag">015</xsl:with-param>
@@ -440,30 +444,27 @@
     </xsl:call-template>
 
     <!-- 003->016 National Bibliographic Agency Control Number -->
-    <xsl:choose>
-      <!-- BnF (France) -->
-      <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
-        <datafield tag="016" ind1="7" ind2=" ">
-          <subfield code="a">
-            <xsl:value-of select="substring-after($unimarc003, 'ark:/12148/')"/>
-          </subfield>
-          <subfield code="2">
-            <xsl:text>FR-751131015</xsl:text>
-          </subfield>
-        </datafield>
-      </xsl:when>
-      <!-- BNP (Portugal) -->
-      <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
-        <datafield tag="016" ind1="7" ind2=" ">
-          <subfield code="a">
-            <xsl:value-of select="substring-after($unimarc003, 'bib/catbnp/')"/>
-          </subfield>
-          <subfield code="2">
-            <xsl:text>PoLiBN</xsl:text>
-          </subfield>
-        </datafield>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:variable name="controlNum">
+      <xsl:choose>
+        <xsl:when test="$agencyCode = 'FR-751131015'">
+          <xsl:value-of select="substring-after($unimarc003, 'ark:/12148/')"/>
+        </xsl:when>
+        <xsl:when test="$agencyCode = 'PoLiBN'">
+          <xsl:value-of select="substring-after($unimarc003, 'bib/catbnp/')"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:if test="string-length($agencyCode) &gt; 0 and string-length($controlNum) &gt; 0">
+      <datafield tag="016" ind1="7" ind2=" ">
+        <subfield code="a">
+          <xsl:value-of select="$controlNum"/>
+        </subfield>
+        <subfield code="2">
+          <xsl:value-of select="$agencyCode"/>
+        </subfield>
+      </datafield>
+    </xsl:if>
 
     <!-- 021->017 Copyright or Legal Deposit Number -->
     <xsl:call-template name="transform-datafield">
