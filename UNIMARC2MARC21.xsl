@@ -439,7 +439,33 @@
       <xsl:with-param name="dstCodes">2az</xsl:with-param>
     </xsl:call-template>
 
-    <!--021->017 Copyright or Legal Deposit Number-->
+    <!-- 003->016 National Bibliographic Agency Control Number -->
+    <xsl:choose>
+      <!-- BnF (France) -->
+      <xsl:when test="contains($unimarc003, 'catalogue.bnf.fr')">
+        <datafield tag="016" ind1="7" ind2=" ">
+          <subfield code="a">
+            <xsl:value-of select="substring-after($unimarc003, 'ark:/12148/')"/>
+          </subfield>
+          <subfield code="2">
+            <xsl:text>FR-751131015</xsl:text>
+          </subfield>
+        </datafield>
+      </xsl:when>
+      <!-- BNP (Portugal) -->
+      <xsl:when test="contains($unimarc003, 'id.bnportugal.gov.pt')">
+        <datafield tag="016" ind1="7" ind2=" ">
+          <subfield code="a">
+            <xsl:value-of select="substring-after($unimarc003, 'bib/catbnp/')"/>
+          </subfield>
+          <subfield code="2">
+            <xsl:text>PoLiBN</xsl:text>
+          </subfield>
+        </datafield>
+      </xsl:when>
+    </xsl:choose>
+
+    <!-- 021->017 Copyright or Legal Deposit Number -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">021</xsl:with-param>
       <xsl:with-param name="dstTag">017</xsl:with-param>
