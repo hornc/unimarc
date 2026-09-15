@@ -654,8 +654,8 @@
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">210</xsl:with-param>
       <xsl:with-param name="dstTag">260</xsl:with-param>
-      <xsl:with-param name="srcCodes">acd</xsl:with-param>
-      <xsl:with-param name="dstCodes">abc</xsl:with-param>
+      <xsl:with-param name="srcCodes">acdegh</xsl:with-param>
+      <xsl:with-param name="dstCodes">abcefg</xsl:with-param>
       <xsl:with-param name="ind1">#</xsl:with-param>
       <xsl:with-param name="ind2">#</xsl:with-param>
     </xsl:call-template>
