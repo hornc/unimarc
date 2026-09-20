@@ -695,6 +695,14 @@
       <xsl:with-param name="dstCodes">a</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 330->520 Summary Note -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">330</xsl:with-param>
+      <xsl:with-param name="dstTag">520</xsl:with-param>
+      <xsl:with-param name="srcCodes">a2</xsl:with-param>
+      <xsl:with-param name="dstCodes">a2</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 600->600 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">600</xsl:with-param>
