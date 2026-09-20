@@ -670,7 +670,7 @@
 
     <!-- 225->490 -->
     <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">255</xsl:with-param>
+      <xsl:with-param name="srcTag">225</xsl:with-param>
       <xsl:with-param name="dstTag">490</xsl:with-param>
       <xsl:with-param name="srcCodes">avx</xsl:with-param>
       <xsl:with-param name="dstCodes">avx</xsl:with-param>
