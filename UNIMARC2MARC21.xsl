@@ -660,6 +660,14 @@
       <xsl:with-param name="ind2">#</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 214->264 Production, Publication, Distribution, Manufacture statements -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">214</xsl:with-param>
+      <xsl:with-param name="dstTag">264</xsl:with-param>
+      <xsl:with-param name="srcCodes">acd</xsl:with-param>
+      <xsl:with-param name="dstCodes">abc</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 215->300 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">215</xsl:with-param>
