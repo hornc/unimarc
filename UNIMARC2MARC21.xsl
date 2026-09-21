@@ -902,7 +902,16 @@
           </xsl:call-template>
         </xsl:if>
 
-	<!-- Make the $4 relator substitution from UNIMARC numeric to MARC21 3-char codes -->
+        <!-- Translate ISNI $o->$0 (isni) -->
+        <xsl:for-each select="mx:subfield[@code='o']">
+          <xsl:if test="starts-with(., 'ISNI')">
+            <subfield code="0">
+              <xsl:value-of select="concat('(isni)', substring-after(., 'ISNI'))"/>
+            </subfield>
+          </xsl:if>
+        </xsl:for-each>
+
+        <!-- Make the $4 relator substitution from UNIMARC numeric to MARC21 3-char codes -->
         <xsl:for-each select="mx:subfield[@code='4']">
           <xsl:variable name="rawCode" select="normalize-space(.)"/>
           <xsl:variable name="mappedCode">
