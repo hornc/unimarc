@@ -660,6 +660,14 @@
       <xsl:with-param name="ind2">#</xsl:with-param>
     </xsl:call-template>
 
+    <!-- 214->264 Production, Publication, Distribution, Manufacture statements -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">214</xsl:with-param>
+      <xsl:with-param name="dstTag">264</xsl:with-param>
+      <xsl:with-param name="srcCodes">acd</xsl:with-param>
+      <xsl:with-param name="dstCodes">abc</xsl:with-param>
+    </xsl:call-template>
+
     <!-- 215->300 -->
     <xsl:call-template name="transform-datafield">
       <xsl:with-param name="srcTag">215</xsl:with-param>
@@ -670,7 +678,7 @@
 
     <!-- 225->490 -->
     <xsl:call-template name="transform-datafield">
-      <xsl:with-param name="srcTag">255</xsl:with-param>
+      <xsl:with-param name="srcTag">225</xsl:with-param>
       <xsl:with-param name="dstTag">490</xsl:with-param>
       <xsl:with-param name="srcCodes">avx</xsl:with-param>
       <xsl:with-param name="dstCodes">avx</xsl:with-param>
@@ -693,6 +701,14 @@
       <xsl:with-param name="dstTag">504</xsl:with-param>
       <xsl:with-param name="srcCodes">a</xsl:with-param>
       <xsl:with-param name="dstCodes">a</xsl:with-param>
+    </xsl:call-template>
+
+    <!-- 330->520 Summary Note -->
+    <xsl:call-template name="transform-datafield">
+      <xsl:with-param name="srcTag">330</xsl:with-param>
+      <xsl:with-param name="dstTag">520</xsl:with-param>
+      <xsl:with-param name="srcCodes">a2</xsl:with-param>
+      <xsl:with-param name="dstCodes">a2</xsl:with-param>
     </xsl:call-template>
 
     <!-- 600->600 -->
@@ -886,7 +902,16 @@
           </xsl:call-template>
         </xsl:if>
 
-	<!-- Make the $4 relator substitution from UNIMARC numeric to MARC21 3-char codes -->
+        <!-- Translate ISNI $o->$0 (isni) -->
+        <xsl:for-each select="mx:subfield[@code='o']">
+          <xsl:if test="starts-with(., 'ISNI')">
+            <subfield code="0">
+              <xsl:value-of select="concat('(isni)', substring-after(., 'ISNI'))"/>
+            </subfield>
+          </xsl:if>
+        </xsl:for-each>
+
+        <!-- Make the $4 relator substitution from UNIMARC numeric to MARC21 3-char codes -->
         <xsl:for-each select="mx:subfield[@code='4']">
           <xsl:variable name="rawCode" select="normalize-space(.)"/>
           <xsl:variable name="mappedCode">
